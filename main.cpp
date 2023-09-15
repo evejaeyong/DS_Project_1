@@ -13,13 +13,12 @@ emily 41 2021-08-01 C
 chris 20 2022-11-05 A
 kevin 58 2023-09-01 B
 taylor 11 2023-02-20 A
-
 */
 	MemberQueue a;
-	string name = "james", date = "2023-08-30";
+	string name = "james";
+	string date = "2023-08-30";
 
 	a.push(name, 17, date, 'B');
-
 	
 
 	return 0;

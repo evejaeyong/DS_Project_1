@@ -1,4 +1,5 @@
 #include "MemberQueue.h"
+#include <iostream>
 
 MemberQueue::MemberQueue() {
     first = 0;
@@ -13,7 +14,7 @@ bool MemberQueue::empty() {
     else return 0;
 }
 bool MemberQueue::full() {
-    if(rear == 9) return 1;
+    if(rear == 1) return 1;
     else return 0;
 }
 void MemberQueue::push(string name, int age, string date, char type) {
