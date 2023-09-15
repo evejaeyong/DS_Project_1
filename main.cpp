@@ -6,7 +6,7 @@ int main() {
 // 	Manager manager;
 // 	manager.run("command.txt");
 /*
-james 17 2023-08-30 B
+james 17 2023-08-30 Bg
 bob 31 2023-02-22 A
 sophia 25 2023-01-01 D
 emily 41 2021-08-01 C

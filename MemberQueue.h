@@ -1,7 +1,6 @@
 #pragma once
 #include "MemberQueueNode.h"
 
-
 class MemberQueue {
 private:
 	MemberQueueNode data[10];
