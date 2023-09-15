@@ -1,3 +1,4 @@
+#include <iostream>
 #include "MemberQueue.h"
 
 MemberQueue::MemberQueue() {
@@ -13,11 +14,14 @@ bool MemberQueue::empty() {
     else return 0;
 }
 bool MemberQueue::full() {
-    if(rear == 99) return 1;
+    if(rear == 9) return 1;
     else return 0;
 }
 void MemberQueue::push(string name, int age, string date, char type) {
-	if(full()) exit;
+	if(full()) {
+        std::cout << "Fuck you";
+        exit;
+    }
     else data[rear++].DataPush(name, age, date, type); 
 }
 MemberQueueNode MemberQueue::pop() {

@@ -3,7 +3,7 @@
 
 class MemberQueue {
 private:
-	MemberQueueNode data[100];
+	MemberQueueNode data[10];
 	int first;
 	int rear;
 
