@@ -1,31 +1,29 @@
 #include "MemberQueue.h"
 
-MemberQueue::MemberQueue()
-{
-
+MemberQueue::MemberQueue() {
+    first = 0;
+    rear = 0;
 }
-MemberQueue::~MemberQueue()
-{
+MemberQueue::~MemberQueue() {
 	
 }
 
-bool MemberQueue::empty()
-{
-
+bool MemberQueue::empty() {
+    if(first == rear) return 1;
+    else return 0;
 }
-bool MemberQueue::full()
-{
-
+bool MemberQueue::full() {
+    if(rear == 99) return 1;
+    else return 0;
 }
-void MemberQueue::push()
-{
-	
+void MemberQueue::push(string name, int age, string date, char type) {
+	if(full()) exit;
+    else data[rear++].DataPush(name, age, date, type); 
 }
-MemberQueueNode MemberQueue::pop()
-{
-
+MemberQueueNode MemberQueue::pop() {
+    if(empty()) exit;
+    return data[first++];
 }
-MemberQueueNode MemberQueue::front()
-{
-
+MemberQueueNode MemberQueue::front() {
+    return data[first];
 }
