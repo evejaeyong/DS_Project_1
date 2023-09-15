@@ -1,9 +1,9 @@
 #pragma once
 
-class TermsBSTNode
-{
+class TermsBSTNode {
 private:
 
+	
 	TermsBSTNode*	left;
 	TermsBSTNode*	right;
 

@@ -1,8 +1,7 @@
 #pragma once
 #include "TermsBSTNode.h"
 
-class TermsBST
-{
+class TermsBST {
 private:
 	TermsBSTNode* root;
 

@@ -1,4 +1,5 @@
 #include "MemberQueue.h"
+#include <stdlib.h>
 
 MemberQueue::MemberQueue() {
     first = 0;
@@ -17,12 +18,12 @@ bool MemberQueue::full() {
     else return 0;
 }
 void MemberQueue::push(string name, int age, string date, char type) {
-	if(full()) exit;
+	if(full()) exit;    //풀인경우 나중에 예외처리 해야 할 듯
     else data[rear % 100].DataPush(name, age, date, type);
     rear++;
 }
 MemberQueueNode MemberQueue::pop() {
-    if(empty()) exit;
+    if(empty()) exit;   //엠티인경우 나중에 예외처리 해야 할 듯
     return data[first++];
 }
 MemberQueueNode MemberQueue::front() {
