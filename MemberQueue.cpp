@@ -1,4 +1,3 @@
-#include <iostream>
 #include "MemberQueue.h"
 
 MemberQueue::MemberQueue() {

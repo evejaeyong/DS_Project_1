@@ -1,8 +1,8 @@
 #pragma once
+#include <string>
 #include "TermsBSTNode.h"
 
-class TermsBST
-{
+class TermsBST {
 private:
 	TermsBSTNode* root;
 
@@ -13,6 +13,7 @@ public:
 	TermsBSTNode* getRoot();
 
 	// insert
+	void push(std::string name, int age, std::string date);
 	// print
 	// delete
 };

@@ -1,5 +1,5 @@
-#include <iostream>
-#include "Manager.h"
+//#include "Manager.h"
+#include "MemberQueue.h"
 using namespace std;
 
 int main() {
@@ -16,7 +16,7 @@ taylor 11 2023-02-20 A
 
 */
 	MemberQueue a;
-	string name = "james", date = "243324";
+	string name = "james", date = "2023-08-30";
 
 	a.push(name, 17, date, 'B');
 
