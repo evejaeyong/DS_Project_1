@@ -13,12 +13,13 @@ bool MemberQueue::empty() {
     else return 0;
 }
 bool MemberQueue::full() {
-    if(rear == 99) return 1;
+    if(rear - first == 100) return 1;
     else return 0;
 }
 void MemberQueue::push(string name, int age, string date, char type) {
 	if(full()) exit;
-    else data[rear++].DataPush(name, age, date, type); 
+    else data[rear % 100].DataPush(name, age, date, type);
+    rear++;
 }
 MemberQueueNode MemberQueue::pop() {
     if(empty()) exit;

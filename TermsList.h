@@ -1,8 +1,7 @@
 #pragma once
 #include "TermsListNode.h"
 
-class TermsLIST
-{
+class TermsLIST {
 private:
 	TermsListNode* head;
 

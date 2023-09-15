@@ -1,16 +1,13 @@
 #include "TermsList.h"
 
-TermsLIST::TermsLIST(): head(nullptr)
-{
+TermsLIST::TermsLIST(): head(nullptr) {
 
 }
-TermsLIST::~TermsLIST()
-{
+TermsLIST::~TermsLIST() {
 
 }
 
-TermsListNode* TermsLIST::getHead()
-{
+TermsListNode* TermsLIST::getHead() {
 	return head;
 }
 
