@@ -1,17 +1,14 @@
 #include "TermsBST.h"
 
-TermsBST::TermsBST() : root(nullptr)
-{
+TermsBST::TermsBST() : root(nullptr) {
 
 }
-TermsBST::~TermsBST()
-{
+TermsBST::~TermsBST() {
 
 }
 
 
-TermsBSTNode* TermsBST::getRoot()
-{
+TermsBSTNode* TermsBST::getRoot() {
 	return root;
 }
 
