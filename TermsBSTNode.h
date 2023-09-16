@@ -68,4 +68,8 @@ public:
 			end.day = start.day;
 		}
 	}
+
+	Day getEndDay() {
+		return end;
+	}
 };

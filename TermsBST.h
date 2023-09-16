@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "TermsBSTNode.h"
+#include "TermsList.h"
 using namespace std;
 
 struct Day{
@@ -11,6 +12,7 @@ struct Day{
 
 class TermsBST {
 private:
+	TermsLIST* list;
 	TermsBSTNode* root;
 
 public:
@@ -18,9 +20,11 @@ public:
 	~TermsBST();
 
 	TermsBSTNode* getRoot();
+	void setList(TermsLIST* list);
+	bool compare_date(TermsBSTNode* a, TermsBSTNode* b);
 
 	// insert
-	void push(string name, int age, string date, char type);
+	void push(string name, int age, string date);
 	// print
 	// delete
 };

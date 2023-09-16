@@ -6,7 +6,7 @@ class TermsLIST {
 private:
 	char type;
 	int member_num;
-	TermsBSTNode* root;
+	TermsBST* BST;
 	
 	TermsListNode* head;
 	
@@ -16,8 +16,10 @@ public:
 	~TermsLIST();
 
 	TermsListNode* getHead();
-
+	char getType();
+	
 	// insert
+	
 	// search
 	// delete
 };
