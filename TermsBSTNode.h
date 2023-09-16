@@ -1,6 +1,8 @@
 #pragma once
+#include <string>
+using namespace std;
 
-struct Day{
+struct Day {
 	int year;
 	int month;
 	int day;
@@ -26,6 +28,14 @@ public:
 
 	void setLeft (TermsBSTNode* left)	{ this->left = left; }
 	void setRight(TermsBSTNode* right)	{ this->right = right; }
+
+	void setName(string name) {
+		this->name = name;
+	}
+
+	void setAge(int age) {
+		this->age = age;
+	}
 
 	void setDay(string date, char type) {
 		start.year = (date[0] - '0') * 1000 + (date[1] - '0') * 100 + (date[2] - '0') * 10 + (date[3] - '0');

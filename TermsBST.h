@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "TermsBSTNode.h"
+using namespace std;
 
 struct Day{
 	int year;
@@ -19,7 +20,7 @@ public:
 	TermsBSTNode* getRoot();
 
 	// insert
-	void push(std::string name, int age, std::string date);
+	void push(string name, int age, string date, char type);
 	// print
 	// delete
 };
