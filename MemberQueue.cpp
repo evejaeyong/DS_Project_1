@@ -1,5 +1,4 @@
 #include "MemberQueue.h"
-#include <iostream>
 
 MemberQueue::MemberQueue() {
     first = 0;
