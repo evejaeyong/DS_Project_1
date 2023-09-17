@@ -20,4 +20,20 @@ public:
 		this->type = type;
 	}
 
+	string getName() {
+		return name;
+	}
+	
+	int getAge() {
+		return age;
+	}
+	
+	string getDate() {
+		return date;
+	}
+
+	char getType() {
+		return type;
+	}
+
 };

@@ -12,7 +12,7 @@ struct Day{
 
 class TermsBST {
 private:
-	TermsLIST* list;
+	TermsListNode* list;
 	TermsBSTNode* root;
 
 public:
@@ -20,7 +20,7 @@ public:
 	~TermsBST();
 
 	TermsBSTNode* getRoot();
-	void setList(TermsLIST* list);
+	void setList(TermsListNode* list);
 	bool compare_date(TermsBSTNode* a, TermsBSTNode* b);
 
 	// insert

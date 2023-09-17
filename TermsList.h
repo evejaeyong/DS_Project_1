@@ -1,25 +1,21 @@
 #pragma once
 #include "TermsListNode.h"
+#include "MemberQueue.h"
 #include "TermsBST.h"
 
 class TermsLIST {
 private:
-	char type;
-	int member_num;
-	TermsBST* BST;
-	
 	TermsListNode* head;
-	
+	TermsListNode* tail;
 
 public:
 	TermsLIST();
 	~TermsLIST();
 
 	TermsListNode* getHead();
-	char getType();
 	
 	// insert
-	
+	void insertData(MemberQueueNode* push);
 	// search
 	// delete
 };

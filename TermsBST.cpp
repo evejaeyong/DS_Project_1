@@ -8,7 +8,7 @@ TermsBST::~TermsBST() {
 
 }
 
-void TermsBST::setList(TermsLIST* list) {
+void TermsBST::setList(TermsListNode* list) {
 	this->list = list;
 }
 

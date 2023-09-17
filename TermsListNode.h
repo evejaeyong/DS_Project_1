@@ -5,7 +5,7 @@ class TermsListNode {
 private:
 	char type;
 	int member_num;
-	TermsBSTNode* BST_Parent;
+	TermsBST* BST;
 	TermsListNode* next;
 
 public:
@@ -14,6 +14,14 @@ public:
 
 	TermsListNode* getNext() { 
 		return next;
+	}
+
+	TermsBST* getBST() {
+		return BST;
+	}
+
+	void PushBST(string name, int age, string date) {
+		BST->push(name, age, date);
 	}
 
 	void setNext(TermsListNode* next) { 
