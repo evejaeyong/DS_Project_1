@@ -9,8 +9,13 @@ private:
 	TermsListNode* next;
 
 public:
-	TermsListNode() {}
-	~TermsListNode() {}
+	TermsListNode() {
+		TermsBST* newNode = new TermsBST;
+		BST = newNode;
+	}
+	~TermsListNode() {
+		delete BST;
+	}
 
 	TermsListNode* getNext() { 
 		return next;
