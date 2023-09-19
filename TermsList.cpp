@@ -48,4 +48,7 @@ void TermsLIST::insertData(MemberQueueNode* add) {
 
 // search
 
+TermsListNode* TermsLIST::searchData(string name) {
+	
+}
 // delete

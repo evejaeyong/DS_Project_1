@@ -17,5 +17,6 @@ public:
 	// insert
 	void insertData(MemberQueueNode* push);
 	// search
+	TermsListNode* searchData(string name);
 	// delete
 };
