@@ -131,10 +131,62 @@ bool NameBST::deleteData(string name) {
 			}
 			delete now;
 		}
-		return 1;
 	}
 	else {
-		
+		NameBSTNode* prev = now;
+		bool way = false;
+		while (now->getName() != name) {
+			if (now == NULL) return 0;
+			if(now->getName().compare(name) > 0) {
+				prev = now;
+				now = now->getRight();
+				way = true;
+			}
+			else {
+				prev = now;
+				now = now->getLeft();
+				way = false;
+			}
+		}
+		int childnum = 0;
+		if (now->getLeft() != NULL) childnum++;
+		if (now->getRight() != NULL) childnum++;
+
+		if (childnum == 0) {
+			delete now;
+		}
+		else if (childnum == 1) {
+			if (now->getLeft() != NULL) {
+				if (way) prev->setRight(now->getLeft());
+				else prev->setLeft(now->getLeft());
+			}
+			else {
+				if (way) prev->setRight(now->getRight());
+				else prev->setLeft(now->getRight());
+			}
+			delete now;
+		}
+		else {
+			NameBSTNode* del = now;
+
+			now = now->getRight();
+			while (now->getLeft() != NULL) {
+				prev = now;
+				now = now->getLeft();
+			}
+
+			del->setName(now->getName());
+			del->setAge(now->getAge());
+			del->setType(now->getType());
+			del->setStart(now->getStart());
+			del->setEnd(now->getEnd());
+
+			if (now->getRight() != NULL) {
+				prev->setLeft(now->getRight());
+			}
+			delete now;
+		}
+
 	}
-	
+	return 1;
 }
