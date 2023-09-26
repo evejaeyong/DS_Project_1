@@ -26,5 +26,7 @@ public:
 	// insert
 	void push(string name, int age, string date);
 	// print
+	void print();
+	void printData(TermsBSTNode* node);
 	// delete
 };

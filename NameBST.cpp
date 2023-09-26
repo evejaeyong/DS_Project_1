@@ -64,6 +64,7 @@ NameBSTNode* NameBST::searchData(string name) {
 // print
 void NameBST::print() {
 	cout << "=====PRINT=====\n";
+	cout << "Name_BST\n";
 	printData(root);
 	cout << "==============\n";
 	return;
@@ -76,7 +77,7 @@ void NameBST::printData(NameBSTNode* node) {
 	cout << node->getName() << "/" << node->getAge() << "/" << node->getStart().year << "-" << node->getStart().month << "-" << node->getStart().day << "/"
 			<< node->getEnd().year << "-" << node->getEnd().month << "-" << node->getEnd().day << "\n";
 	printData(node->getRight());
-	
+
 	return;
 }
 

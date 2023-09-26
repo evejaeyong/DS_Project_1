@@ -42,5 +42,22 @@ void TermsLIST::insertData(MemberQueueNode* add) {
 		}
 	}
 }
+// search
+
+TermsListNode* TermsLIST::searchData(char type) {
+	TermsListNode* a = head;
+	while (1) {
+		if (a == NULL) break;
+		else if (a->getType() == type) {
+			return a;
+		}
+		else {
+			a = a->getNext();
+		}
+	}
+
+	return NULL;
+}
+
 // delete
 
