@@ -88,4 +88,16 @@ public:
 	Day getEnd() {
 		return end;
 	}
+
+	char getType() {
+		return type;
+	}
+
+	void setStart(Day start) {
+		this->start = start;
+	}
+
+	void setEnd(Day end) {
+		this->end = end;
+	}
 };

@@ -83,7 +83,7 @@ void NameBST::printData(NameBSTNode* node) {
 
 	printData(node->getLeft());
 	cout << node->getName() << "/" << node->getAge() << "/" << node->getStart().year << "-" << node->getStart().month << "-" << node->getStart().day << "/"
-			<< node->getEnd().year << "-" << node->getEnd().month << "-" << node->getEnd().day << "\n";
+			<< node->getEnd().year << "-" << node->getEnd().month << "-" << node->getEnd().day << "\n";	//cout으로 하면 안됨, 파일로 옮길 방법 찾기
 	printData(node->getRight());
 
 	return;
@@ -91,5 +91,50 @@ void NameBST::printData(NameBSTNode* node) {
 
 // delete
 bool NameBST::deleteData(string name) {
+	if (root == NULL) return 0;
+	NameBSTNode* now = root;
+
+	if (root->getName() == name) {
+		int childnum = 0;
+		if(root->getLeft() != NULL) childnum++;
+		if(root->getRight() != NULL) childnum++;
+
+		if(childnum == 0) {
+			delete now;
+			root = NULL;
+		}
+		else if (childnum == 1) {
+			if (root->getLeft() != NULL) {
+				root = now->getLeft();
+			}
+			else {
+				root = now->getRight();
+			}
+			delete now;
+		}
+		else {
+			NameBSTNode* prev = root->getRight();
+			now = prev;
+			while (now->getLeft() != NULL) {
+				now = now->getLeft();
+				prev = prev->getLeft();
+			}
+
+			root->setName(now->getName());
+			root->setAge(now->getAge());
+			root->setType(now->getType());
+			root->setStart(now->getStart());
+			root->setEnd(now->getEnd());
+
+			if (now->getRight() != NULL) {
+				prev->setLeft(now->getRight());
+			}
+			delete now;
+		}
+		return 1;
+	}
+	else {
+		
+	}
 	
 }
