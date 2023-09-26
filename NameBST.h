@@ -16,6 +16,7 @@ public:
 	// insert
 	void insertData(MemberQueueNode* add);
 	// search
+	NameBSTNode* searchData(string name);
 	// print
 	// delete
 };

@@ -25,7 +25,7 @@ void NameBST::insertData(MemberQueueNode* add) {
 	}
 	NameBSTNode* a = root;
 	while(1) {
-		if (a->getName().compare(newNode->getName()) >= 1) {
+		if (a->getName().compare(newNode->getName()) < 0) {
 			if (a->getRight() == NULL) {
 				a->setRight(newNode);
 				break;
@@ -42,7 +42,22 @@ void NameBST::insertData(MemberQueueNode* add) {
 	}
 }
 // search
+NameBSTNode* NameBST::searchData(string name) {
+	NameBSTNode* a = root;
 
+	while(1) {
+		if (a == NULL) break;
+		if (name.compare(a->getName()) == 0) {
+			return a;
+		}
+		else if (name.compare(a->getName()) > 0) {
+			a = a->getLeft();
+		}
+		else a = a->getRight();
+
+	}
+	return NULL;
+}
 // print
 
 // delete
