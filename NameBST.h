@@ -1,8 +1,10 @@
 #pragma once
 #include "NameBSTNode.h"
+#include "MemberQueueNode.h"
 
 class NameBST {
 private:
+
 	NameBSTNode* root;
 
 public:
@@ -12,7 +14,9 @@ public:
 	NameBSTNode* getRoot();
 
 	// insert
+	void insertData(MemberQueueNode* add);
 	// search
+	NameBSTNode* searchData(string name);
 	// print
 	// delete
 };
