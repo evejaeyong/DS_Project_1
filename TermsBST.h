@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <fstream>
 #include "TermsBSTNode.h"
 #include "TermsList.h"
 using namespace std;
@@ -12,6 +13,7 @@ struct Day{
 
 class TermsBST {
 private:
+	ofstream flog;
 	TermsListNode* list;
 	TermsBSTNode* root;
 
@@ -26,7 +28,6 @@ public:
 	// insert
 	void push(string name, int age, string date);
 	// print
-	void print();
 	void printData(TermsBSTNode* node);
 	// delete
 };

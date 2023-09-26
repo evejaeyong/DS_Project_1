@@ -101,7 +101,53 @@ void Manager::LoadData() {
 
 // ADD
 void Manager::AddData() {
+    string line;
+    getline(fcmd, line);
+
+    int len = 0;
+    string name, strage, date;
+    int age;
+    char type;
+
+    while (line[len] != ' ') {
+       name.push_back(line[len++]);
+       if (line[len] == NULL) {
+           PrintErrorCode(200);
+           return;
+        }
+    }
+    len++;
+
+    while (line[len] != ' ') {
+        strage.push_back(line[len++]);
+        if (line[len] == NULL) {
+            PrintErrorCode(200);
+            return;
+        }
+    }
+    age = stoi(strage);
+    len++;
+
+    while (line[len] != ' ') {
+        date.push_back(line[len++]);
+        if (line[len] == NULL) {
+            PrintErrorCode(200);
+            return;
+        }
+    }
+    len++;
+
+    type = line[len];
+    if (type == NULL) {
+        PrintErrorCode(200);
+        return;
+    }
     
+    queue.push(name, age, date, type);
+
+    flog << "===== ADD =====\n";
+    flog << name << "/" << age << "/" << date << "/" << type << "\n";
+    flog << "===============\n\n";
 }
 
 // QPOP
@@ -135,7 +181,27 @@ void Manager::SearchData() {
 
 // PRINT
 void Manager::PrintData() {
-
+    string name;
+    fcmd >> name;
+    
+    if ('A' <= name[0] && name[0] <= 'D') {
+        if (list.searchData(name[0])->getBST()->getRoot() == NULL) {
+            PrintErrorCode(500);
+            return;
+        }
+        flog << "===== PRINT =====\n";
+        list.searchData(name[0])->getBST()->printData(list.searchData(name[0])->getBST()->getRoot());
+    }
+    else {
+        if (BST.getRoot() == NULL) {
+            PrintErrorCode(500);
+            return;
+        }
+        flog << "===== PRINT =====\n";
+        BST.printData(BST.getRoot());
+    }
+    flog << "===============\n\n";
+    return;
 }
 
 // DELETE

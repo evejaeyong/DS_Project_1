@@ -72,29 +72,17 @@ void TermsBST::push(string name, int age, string date) {
 	}
 }
 // print
-void TermsBST::print() {
-	if(root == NULL) {
-		cout << "===== ERROR =====\n";
-		cout << "500\n";
-		cout << "==============\n";
-	}
-
-	else {
-		cout << "=====PRINT=====\n";
-		cout << "Terms_BST" << list->getType() << "\n";
-		printData(root);
-		cout << "==============\n";
-	}
-	return;
-}
-
 void TermsBST::printData(TermsBSTNode* node) {
 	if (node == NULL) return;
+	flog.open("log.txt", ios::app);
 
 	printData(node->getLeft());
-	cout << node->getName() << "/" << node->getAge() << "/" << node->getStart().year << "-" << node->getStart().month << "-" << node->getStart().day << "/"
+	flog << node->getName() << "/" << node->getAge() << "/" << node->getStart().year << "-" << node->getStart().month << "-" << node->getStart().day << "/"
 			<< node->getEnd().year << "-" << node->getEnd().month << "-" << node->getEnd().day << "\n";
 	printData(node->getRight());
+	
+	flog.close();
+	return;
 }
 
 // delete

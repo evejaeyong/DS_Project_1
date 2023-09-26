@@ -62,30 +62,17 @@ NameBSTNode* NameBST::searchData(string name) {
 }
 
 // print
-void NameBST::print() {
-	if(root == NULL) {
-		cout << "===== ERROR =====\n";
-		cout << "500\n";
-		cout << "==============\n";
-	}
-
-	else {
-		cout << "===== PRINT =====\n";
-		cout << "Name_BST\n";
-		printData(root);
-		cout << "==============\n";
-	}
-	return;
-}
 
 void NameBST::printData(NameBSTNode* node) {
 	if (node == NULL) return;
+	flog.open("log.txt", ios::app);
 
 	printData(node->getLeft());
-	cout << node->getName() << "/" << node->getAge() << "/" << node->getStart().year << "-" << node->getStart().month << "-" << node->getStart().day << "/"
+	flog << node->getName() << "/" << node->getAge() << "/" << node->getStart().year << "-" << node->getStart().month << "-" << node->getStart().day << "/"
 			<< node->getEnd().year << "-" << node->getEnd().month << "-" << node->getEnd().day << "\n";	//cout으로 하면 안됨, 파일로 옮길 방법 찾기
 	printData(node->getRight());
 
+	flog.close();
 	return;
 }
 

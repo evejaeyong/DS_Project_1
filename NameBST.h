@@ -1,10 +1,11 @@
 #pragma once
 #include "NameBSTNode.h"
 #include "MemberQueueNode.h"
+#include <fstream>
 
 class NameBST {
 private:
-
+	ofstream flog;
 	NameBSTNode* root;
 
 public:
@@ -18,7 +19,6 @@ public:
 	// search
 	NameBSTNode* searchData(string name);
 	// print
-	void print();
 	void printData(NameBSTNode* node);
 	// delete
 	bool deleteData(string name);
