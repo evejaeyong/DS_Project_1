@@ -1,4 +1,6 @@
 #include "NameBST.h"
+#include <iostream>
+using namespace std;
 
 NameBST::NameBST() : root(nullptr) {
 
@@ -58,6 +60,24 @@ NameBSTNode* NameBST::searchData(string name) {
 	}
 	return NULL;
 }
+
 // print
+void NameBST::print() {
+	cout << "=====PRINT=====\n";
+	printData(root);
+	cout << "==============\n";
+	return;
+}
+
+void NameBST::printData(NameBSTNode* node) {
+	if (node == NULL) return;
+
+	printData(node->getLeft());
+	cout << node->getName() << "/" << node->getAge() << "/" << node->getStart().year << "-" << node->getStart().month << "-" << node->getStart().day << "/"
+			<< node->getEnd().year << "-" << node->getEnd().month << "-" << node->getEnd().day << "\n";
+	printData(node->getRight());
+	
+	return;
+}
 
 // delete

@@ -18,5 +18,7 @@ public:
 	// search
 	NameBSTNode* searchData(string name);
 	// print
+	void print();
+	void printData(NameBSTNode* node);
 	// delete
 };
