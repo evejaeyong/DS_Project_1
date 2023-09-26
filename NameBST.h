@@ -14,7 +14,7 @@ public:
 	NameBSTNode* getRoot();
 
 	// insert
-	void insertData(MemberQueueNode* add);
+	void insertData(MemberQueueNode add);
 	// search
 	NameBSTNode* searchData(string name);
 	// print

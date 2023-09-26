@@ -14,12 +14,12 @@ NameBSTNode* NameBST::getRoot() {
 }
 
 // insert
-void NameBST::insertData(MemberQueueNode* add) {
+void NameBST::insertData(MemberQueueNode add) {
 	NameBSTNode* newNode = new NameBSTNode;
-	newNode->setName(add->getName());
-	newNode->setAge(add->getAge());
-	newNode->setType(add->getType());
-	newNode->setDay(add->getDate());
+	newNode->setName(add.getName());
+	newNode->setAge(add.getAge());
+	newNode->setType(add.getType());
+	newNode->setDay(add.getDate());
 
 	if (root = NULL) {
 		root = newNode;

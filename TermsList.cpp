@@ -10,13 +10,13 @@ TermsListNode* TermsLIST::getHead() {
 }
 
 // insert
-void TermsLIST::insertData(MemberQueueNode* add) {
-	char temp = add->getType();
+void TermsLIST::insertData(MemberQueueNode add) {
+	char temp = add.getType();
 	if (head == NULL) {
 		TermsListNode* newNode = new TermsListNode;
 		newNode->setType(temp);
 		newNode->plus_num();
-		newNode->getBST()->push(add->getName(), add->getAge(), add->getDate());
+		newNode->getBST()->push(add.getName(), add.getAge(), add.getDate());
 		head = newNode;
 		tail = newNode;
 		return;
@@ -27,7 +27,7 @@ void TermsLIST::insertData(MemberQueueNode* add) {
 		while (a != NULL) {
 			if (a->getType() == temp) {
 				a->plus_num();
-				a->getBST()->push(add->getName(), add->getAge(), add->getDate());
+				a->getBST()->push(add.getName(), add.getAge(), add.getDate());
 				flag = true;
 			}
 		}
@@ -36,7 +36,7 @@ void TermsLIST::insertData(MemberQueueNode* add) {
 			TermsListNode* newNode = new TermsListNode;
 			newNode->setType(temp);
 			newNode->plus_num();
-			newNode->getBST()->push(add->getName(), add->getAge(), add->getDate());
+			newNode->getBST()->push(add.getName(), add.getAge(), add.getDate());
 			tail->setNext(newNode);
 			tail = newNode;
 		}
