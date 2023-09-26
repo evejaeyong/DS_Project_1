@@ -33,6 +33,10 @@ public:
 		this->name = name;
 	}
 
+	string getName() {
+		return name;
+	}
+
 	void setAge(int age) {
 		this->age = age;
 	}

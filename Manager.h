@@ -6,8 +6,7 @@
 #include <fstream>
 using namespace std;
 
-class Manager
-{
+class Manager {
 private:
 
 	ifstream	fcmd;

@@ -41,14 +41,6 @@ void TermsLIST::insertData(MemberQueueNode* add) {
 			tail = newNode;
 		}
 	}
-	
-
-}
-
-
-// search
-
-TermsListNode* TermsLIST::searchData(string name) {
-	
 }
 // delete
+

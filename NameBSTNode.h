@@ -1,12 +1,10 @@
 #pragma once
 
-class NameBSTNode
-{
+class NameBSTNode {
 private:
 
 	NameBSTNode*	left;
 	NameBSTNode*	right;
-	
 
 public:
 	NameBSTNode() {}

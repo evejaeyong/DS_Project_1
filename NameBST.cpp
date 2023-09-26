@@ -1,16 +1,13 @@
 #include "NameBST.h"
 
-NameBST::NameBST() : root(nullptr)
-{
+NameBST::NameBST() : root(nullptr) {
 
 }
-NameBST::~NameBST()
-{
+NameBST::~NameBST() {
 
 }
 
-NameBSTNode* NameBST::getRoot()
-{
+NameBSTNode* NameBST::getRoot() {
 	return root;
 }
 
