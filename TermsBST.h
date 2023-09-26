@@ -30,4 +30,6 @@ public:
 	// print
 	void printData(TermsBSTNode* node);
 	// delete
+	bool deleteData(Day end);
+	void deleteOneData(Day end);
 };

@@ -9,6 +9,10 @@ TermsListNode* TermsLIST::getHead() {
 	return head;
 }
 
+void TermsLIST::setBST(NameBST* BST) {
+	this->BST = BST;
+}
+
 // insert
 void TermsLIST::insertData(MemberQueueNode add) {
 	char temp = add.getType();
@@ -60,4 +64,16 @@ TermsListNode* TermsLIST::searchData(char type) {
 }
 
 // delete
+bool TermsLIST::DeleteData(Day end, bool flag) {
+	//이거 플래그를 사용해도 문제점이 있음
+	//end 시점이 똑같은 경우가 지워짐 어케해결할까?
+	if (flag) {
 
+	}
+
+	else {
+		
+	}
+
+
+}

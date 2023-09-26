@@ -2,10 +2,18 @@
 using namespace std;
 
 Manager::Manager() {
+    queue = new MemberQueue;
+    list = new TermsLIST;
+    BST = new NameBST;
 
+    BST->setList(list);
+    list->setBST(BST);
 }
-Manager::~Manager() {
 
+Manager::~Manager() {
+    delete queue;
+    delete list;
+    delete BST;
 }
 
 void Manager::run(const char* command) {
@@ -62,7 +70,7 @@ void Manager::LoadData() {
     if(!fdata) {
         PrintErrorCode(100);
     }
-    else if (!queue.empty() || list.getHead() != NULL || BST.getRoot() != NULL) {
+    else if (!queue->empty() || list->getHead() != NULL || BST->getRoot() != NULL) {
         PrintErrorCode(100);
     }
     else {
@@ -92,7 +100,7 @@ void Manager::LoadData() {
             len++;
 
             type = line[len];
-            queue.push(name, age, date, type);
+            queue->push(name, age, date, type);
 
             flog << line << "\n";
 
@@ -146,7 +154,7 @@ void Manager::AddData() {
         return;
     }
     
-    queue.push(name, age, date, type);
+    queue->push(name, age, date, type);
 
     flog << "===== ADD =====\n";
     flog << name << "/" << age << "/" << date << "/" << type << "\n";
@@ -155,11 +163,11 @@ void Manager::AddData() {
 
 // QPOP
 void Manager::PopData() {
-    if (queue.empty()) PrintErrorCode(300);
+    if (queue->empty()) PrintErrorCode(300);
     else {
-        MemberQueueNode popNode = queue.pop();
-        list.insertData(popNode);
-        BST.insertData(popNode);
+        MemberQueueNode popNode = queue->pop();
+        list->insertData(popNode);
+        BST->insertData(popNode);
         PrintSuccess("QPOP");
     }
 }
@@ -169,7 +177,7 @@ void Manager::SearchData() {
     string name;
     fcmd >> name;
 
-    NameBSTNode* node = BST.searchData(name);
+    NameBSTNode* node = BST->searchData(name);
     if (node == NULL) {
         PrintErrorCode(400);
     }
@@ -188,22 +196,22 @@ void Manager::PrintData() {
     fcmd >> name;
     
     if ('A' <= name[0] && name[0] <= 'D') {
-        if (list.searchData(name[0])->getBST()->getRoot() == NULL) {
+        if (list->searchData(name[0])->getBST()->getRoot() == NULL) {
             PrintErrorCode(500);
             return;
         }
         flog << "===== PRINT =====\n";
         flog << "Terms_BST " << name[0] << "\n";
-        list.searchData(name[0])->getBST()->printData(list.searchData(name[0])->getBST()->getRoot());
+        list->searchData(name[0])->getBST()->printData(list->searchData(name[0])->getBST()->getRoot());
     }
     else {
-        if (BST.getRoot() == NULL) {
+        if (BST->getRoot() == NULL) {
             PrintErrorCode(500);
             return;
         }
         flog << "===== PRINT =====\n";
         flog << "Name_BST\n";
-        BST.printData(BST.getRoot());
+        BST->printData(BST->getRoot());
     }
     flog << "===============\n\n";
     return;
@@ -215,11 +223,18 @@ void Manager::DeleteData() {
     fcmd >> st >> data;
 
     if (st == "DATE") {
-
+        Day end;
+	    end.year = (data[0] - '0') * 1000 + (data[1] - '0') * 100 + (data[2] - '0') * 10 + (data[3] - '0');
+	    end.month = (data[5] - '0') * 10 + (data[6] - '0');
+	    end.day = (data[8] - '0') * 10 + (data[9] - '0');
+        if(list->DeleteData(end, true) == true) {
+            PrintSuccess("DELETE");
+        }
+        else PrintErrorCode(600);
     }
-    
+
     else if (st == "NAME") {
-        if(BST.deleteData(data) == true) {
+        if(BST->deleteData(data) == true) {
             PrintSuccess("DELETE");
         }
         else PrintErrorCode(600);

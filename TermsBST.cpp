@@ -80,9 +80,16 @@ void TermsBST::printData(TermsBSTNode* node) {
 	flog << node->getName() << "/" << node->getAge() << "/" << node->getStart().year << "-" << node->getStart().month << "-" << node->getStart().day << "/"
 			<< node->getEnd().year << "-" << node->getEnd().month << "-" << node->getEnd().day << "\n";
 	printData(node->getRight());
-	
+
 	flog.close();
 	return;
 }
 
 // delete
+bool TermsBST::deleteData(Day end) {
+
+}
+
+void TermsBST::deleteOneData(Day end) {
+
+}
