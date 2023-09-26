@@ -73,10 +73,19 @@ void TermsBST::push(string name, int age, string date) {
 }
 // print
 void TermsBST::print() {
-	cout << "=====PRINT=====\n";
-	cout << "Terms_BST" << list->getType() << "\n";
-	printData(root);
-	cout << "==============\n";
+	if(root == NULL) {
+		cout << "===== ERROR =====\n";
+		cout << "500\n";
+		cout << "==============\n";
+	}
+
+	else {
+		cout << "=====PRINT=====\n";
+		cout << "Terms_BST" << list->getType() << "\n";
+		printData(root);
+		cout << "==============\n";
+	}
+	return;
 }
 
 void TermsBST::printData(TermsBSTNode* node) {

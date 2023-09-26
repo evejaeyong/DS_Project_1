@@ -21,4 +21,5 @@ public:
 	void print();
 	void printData(NameBSTNode* node);
 	// delete
+	bool deleteData(string name);
 };

@@ -63,10 +63,18 @@ NameBSTNode* NameBST::searchData(string name) {
 
 // print
 void NameBST::print() {
-	cout << "=====PRINT=====\n";
-	cout << "Name_BST\n";
-	printData(root);
-	cout << "==============\n";
+	if(root == NULL) {
+		cout << "===== ERROR =====\n";
+		cout << "500\n";
+		cout << "==============\n";
+	}
+
+	else {
+		cout << "===== PRINT =====\n";
+		cout << "Name_BST\n";
+		printData(root);
+		cout << "==============\n";
+	}
 	return;
 }
 
@@ -82,3 +90,6 @@ void NameBST::printData(NameBSTNode* node) {
 }
 
 // delete
+bool NameBST::deleteData(string name) {
+	
+}
