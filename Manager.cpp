@@ -31,6 +31,9 @@ void Manager::run(const char* command) {
             PrintSuccess(cmd.c_str());
             break;
         }
+        else {
+            PrintErrorCode(1000);
+        }
         
     }
 
@@ -190,6 +193,7 @@ void Manager::PrintData() {
             return;
         }
         flog << "===== PRINT =====\n";
+        flog << "Terms_BST " << name[0] << "\n";
         list.searchData(name[0])->getBST()->printData(list.searchData(name[0])->getBST()->getRoot());
     }
     else {
@@ -198,6 +202,7 @@ void Manager::PrintData() {
             return;
         }
         flog << "===== PRINT =====\n";
+        flog << "Name_BST\n";
         BST.printData(BST.getRoot());
     }
     flog << "===============\n\n";
@@ -206,5 +211,19 @@ void Manager::PrintData() {
 
 // DELETE
 void Manager::DeleteData() {
+    string st, data;
+    fcmd >> st >> data;
 
+    if (st == "DATE") {
+
+    }
+    
+    else if (st == "NAME") {
+        if(BST.deleteData(data) == true) {
+            PrintSuccess("DELETE");
+        }
+        else PrintErrorCode(600);
+    }
+
+    return;
 }
