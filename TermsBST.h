@@ -1,9 +1,18 @@
 #pragma once
+#include <string>
 #include "TermsBSTNode.h"
+#include "TermsList.h"
+using namespace std;
 
-class TermsBST
-{
+struct Day{
+	int year;
+	int month;
+	int day;
+};
+
+class TermsBST {
 private:
+	TermsListNode* list;
 	TermsBSTNode* root;
 
 public:
@@ -11,8 +20,11 @@ public:
 	~TermsBST();
 
 	TermsBSTNode* getRoot();
+	void setList(TermsListNode* list);
+	bool compare_date(TermsBSTNode* a, TermsBSTNode* b);
 
 	// insert
+	void push(string name, int age, string date);
 	// print
 	// delete
 };

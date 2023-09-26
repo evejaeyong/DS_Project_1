@@ -1,8 +1,7 @@
 #pragma once
 #include "NameBSTNode.h"
 
-class NameBST
-{
+class NameBST {
 private:
 	NameBSTNode* root;
 
