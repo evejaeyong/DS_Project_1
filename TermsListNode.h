@@ -53,6 +53,5 @@ public:
 		if(member_num == 0) return 1;
 		else return 0;
 	}
-
 	
 };

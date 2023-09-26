@@ -1,4 +1,5 @@
 #include "TermsBST.h"
+#include <iostream>
 using namespace std;
 
 TermsBST::TermsBST() : root(nullptr) {
@@ -17,8 +18,8 @@ TermsBSTNode* TermsBST::getRoot() {
 }
 
 bool TermsBST::compare_date(TermsBSTNode* a, TermsBSTNode* b) {
-	Day a_day = a->getEndDay();
-	Day b_day = b->getEndDay();
+	Day a_day = a->getEnd();
+	Day b_day = b->getEnd();
 	
 	if (a_day.year > b_day.year) {
 		return 0;
@@ -71,5 +72,17 @@ void TermsBST::push(string name, int age, string date) {
 	}
 }
 // print
+void TermsBST::printData(TermsBSTNode* node) {
+	if (node == NULL) return;
+	flog.open("log.txt", ios::app);
+
+	printData(node->getLeft());
+	flog << node->getName() << "/" << node->getAge() << "/" << node->getStart().year << "-" << node->getStart().month << "-" << node->getStart().day << "/"
+			<< node->getEnd().year << "-" << node->getEnd().month << "-" << node->getEnd().day << "\n";
+	printData(node->getRight());
+	
+	flog.close();
+	return;
+}
 
 // delete

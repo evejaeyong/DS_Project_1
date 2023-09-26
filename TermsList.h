@@ -15,8 +15,8 @@ public:
 	TermsListNode* getHead();
 	
 	// insert
-	void insertData(MemberQueueNode* push);
+	void insertData(MemberQueueNode push);
 	// search
-	TermsListNode* searchData(string date);
+	TermsListNode* searchData(char type);
 	// delete
 };

@@ -4,13 +4,17 @@
 #include "TermsBST.h"
 #include "NameBST.h"
 #include <fstream>
+#include <string>
 using namespace std;
 
 class Manager {
 private:
+	MemberQueue queue;
+	TermsLIST list;
+	NameBST BST;
 
-	ifstream	fcmd;
-	ofstream	flog;
+	ifstream fcmd;
+	ofstream flog;
 
 
 public:
@@ -23,9 +27,15 @@ public:
 	void PrintErrorCode(int num);
 
 	// LOAD
+	void LoadData();
 	// ADD
+	void AddData();
 	// QPOP
+	void PopData();
 	// SEARCH
+	void SearchData();
 	// PRINT
+	void PrintData();
 	// DELETE
+	void DeleteData();
 };

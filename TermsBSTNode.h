@@ -73,7 +73,15 @@ public:
 		}
 	}
 
-	Day getEndDay() {
+	int getAge() {
+		return age;
+	}
+
+	Day getStart() {
+		return start;
+	}
+
+	Day getEnd() {
 		return end;
 	}
 };

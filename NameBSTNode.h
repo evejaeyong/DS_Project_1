@@ -41,6 +41,10 @@ public:
 		this->age = age;
 	}
 
+	int getAge() {
+		return age;
+	}
+
 	void setType(char type) {
 		this->type = type;
 	}
@@ -75,5 +79,25 @@ public:
 			end.month = start.month;
 			end.day = start.day;
 		}
+	}
+
+	Day getStart() {
+		return start;
+	}
+
+	Day getEnd() {
+		return end;
+	}
+
+	char getType() {
+		return type;
+	}
+
+	void setStart(Day start) {
+		this->start = start;
+	}
+
+	void setEnd(Day end) {
+		this->end = end;
 	}
 };
