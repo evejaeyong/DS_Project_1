@@ -9,6 +9,10 @@ TermsBST::~TermsBST() {
 
 }
 
+void TermsBST::setRoot(TermsBSTNode* root) {
+	this->root = root;
+}
+
 void TermsBST::setList(TermsListNode* list) {
 	this->list = list;
 }
@@ -90,6 +94,6 @@ bool TermsBST::deleteData(Day end) {
 
 }
 
-void TermsBST::deleteOneData(Day end) {
+void TermsBST::deleteOneData(Day end, string name) {
 
 }

@@ -227,7 +227,7 @@ void Manager::DeleteData() {
 	    end.year = (data[0] - '0') * 1000 + (data[1] - '0') * 100 + (data[2] - '0') * 10 + (data[3] - '0');
 	    end.month = (data[5] - '0') * 10 + (data[6] - '0');
 	    end.day = (data[8] - '0') * 10 + (data[9] - '0');
-        if(list->DeleteData(end, true) == true) {
+        if(list->DeleteData(end) == true) {
             PrintSuccess("DELETE");
         }
         else PrintErrorCode(600);

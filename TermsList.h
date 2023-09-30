@@ -25,5 +25,6 @@ public:
 	// search
 	TermsListNode* searchData(char type);
 	// delete
-	bool DeleteData(Day end, bool flag);
+	bool DeleteData(Day end);
+	void DeleteOneData(Day end, string name);
 };
