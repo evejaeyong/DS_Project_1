@@ -65,7 +65,15 @@ TermsListNode* TermsLIST::searchData(char type) {
 
 // delete
 bool TermsLIST::DeleteData(Day end) {
-	
+	TermsListNode* list = head;
+	bool check, res = false;
+	while(list != NULL) {
+		TermsBST* BST = list->getBST();
+		check = BST->deleteData(end);
+		if (check) res = true;
+		list = list->getNext();
+	}
+	return res;
 }
 
 void TermsLIST::DeleteOneData(Day end, string name) {

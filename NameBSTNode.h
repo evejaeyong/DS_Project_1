@@ -100,14 +100,4 @@ public:
 	void setEnd(Day end) {
 		this->end = end;
 	}
-
-	int compare(Day end) {
-		if (this->end.year > end.year) return 1;
-		else if (this->end.year < end.year) return -1;
-		else if (this->end.month > end.month) return 1;
-		else if (this->end.month < end.month) return -1;
-		else if (this->end.day > end.day) return 1;
-		else if (this->end.day < end.day) return -1;
-		else return 0;
-	}
 };

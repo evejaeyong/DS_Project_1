@@ -94,4 +94,14 @@ public:
 		else if (this->end.day < end.day) return -1;
 		else return 0;
 	}
+
+	void setStart(Day start) {
+		this->start = start;
+		return;
+	}
+
+	void setEnd(Day end) {
+		this->end = end;
+		return;
+	}
 };

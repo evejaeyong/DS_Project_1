@@ -5,12 +5,6 @@
 #include "TermsList.h"
 using namespace std;
 
-struct Day{
-	int year;
-	int month;
-	int day;
-};
-
 class TermsBST {
 private:
 	ofstream flog;
