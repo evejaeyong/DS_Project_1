@@ -69,7 +69,7 @@ bool TermsLIST::DeleteData(Day end) {
 	bool check, res = false;
 	while(list != NULL) {
 		TermsBST* BST = list->getBST();
-		check = BST->deleteData(end);
+		check = BST->deleteData(end, list->getBST()->getRoot());
 		if (check) res = true;
 		list = list->getNext();
 	}

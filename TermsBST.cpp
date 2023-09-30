@@ -79,8 +79,21 @@ void TermsBST::printData(TermsBSTNode* node) {
 }
 
 // delete
-bool TermsBST::deleteData(Day end) {
-
+bool TermsBST::deleteData(Day end, TermsBSTNode* node) {
+	if (node == NULL) return false;
+	if (node->compare(end) == 1) {
+		if (node == root) root = node->getRight();
+		deleteData(end, node->getLeft());
+		return false;
+	}
+	else {
+		if (node == root) root = node->getRight();
+		deleteData(end, node->getLeft());
+		deleteData(end, node->getRight());
+		deleteOneData(end, node->getName());
+		return true;
+	}
+	
 }
 
 void TermsBST::deleteOneData(Day end, string name) {
