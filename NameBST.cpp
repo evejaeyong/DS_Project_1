@@ -13,6 +13,10 @@ NameBSTNode* NameBST::getRoot() {
 	return root;
 }
 
+void NameBST::setList(TermsLIST* list) {
+	this->list = list;
+}
+
 // insert
 void NameBST::insertData(MemberQueueNode add) {
 	NameBSTNode* newNode = new NameBSTNode;
@@ -87,6 +91,7 @@ bool NameBST::deleteData(string name) {
 		if(root->getRight() != NULL) childnum++;
 
 		if(childnum == 0) {
+			this->list->DeleteOneData(now->getEnd() ,now->getName());
 			delete now;
 			root = NULL;
 		}
@@ -97,6 +102,7 @@ bool NameBST::deleteData(string name) {
 			else {
 				root = now->getRight();
 			}
+			this->list->DeleteOneData(now->getEnd() ,now->getName());
 			delete now;
 		}
 		else {
@@ -116,6 +122,7 @@ bool NameBST::deleteData(string name) {
 			if (now->getRight() != NULL) {
 				prev->setLeft(now->getRight());
 			}
+			this->list->DeleteOneData(now->getEnd() ,now->getName());
 			delete now;
 		}
 	}
@@ -140,6 +147,7 @@ bool NameBST::deleteData(string name) {
 		if (now->getRight() != NULL) childnum++;
 
 		if (childnum == 0) {
+			this->list->DeleteOneData(now->getEnd() ,now->getName());
 			delete now;
 		}
 		else if (childnum == 1) {
@@ -151,11 +159,13 @@ bool NameBST::deleteData(string name) {
 				if (way) prev->setRight(now->getRight());
 				else prev->setLeft(now->getRight());
 			}
+			this->list->DeleteOneData(now->getEnd() ,now->getName());
 			delete now;
 		}
 		else {
 			NameBSTNode* del = now;
-
+			this->list->DeleteOneData(now->getEnd() ,now->getName());
+			
 			now = now->getRight();
 			while (now->getLeft() != NULL) {
 				prev = now;
@@ -171,6 +181,7 @@ bool NameBST::deleteData(string name) {
 			if (now->getRight() != NULL) {
 				prev->setLeft(now->getRight());
 			}
+			
 			delete now;
 		}
 

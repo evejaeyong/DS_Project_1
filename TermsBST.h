@@ -5,12 +5,6 @@
 #include "TermsList.h"
 using namespace std;
 
-struct Day{
-	int year;
-	int month;
-	int day;
-};
-
 class TermsBST {
 private:
 	ofstream flog;
@@ -22,6 +16,7 @@ public:
 	~TermsBST();
 
 	TermsBSTNode* getRoot();
+	void setRoot(TermsBSTNode* root);
 	void setList(TermsListNode* list);
 	bool compare_date(TermsBSTNode* a, TermsBSTNode* b);
 
@@ -30,4 +25,6 @@ public:
 	// print
 	void printData(TermsBSTNode* node);
 	// delete
+	bool deleteData(Day end);
+	void deleteOneData(Day end, string name);
 };

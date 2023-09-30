@@ -9,13 +9,12 @@ using namespace std;
 
 class Manager {
 private:
-	MemberQueue queue;
-	TermsLIST list;
-	NameBST BST;
+	MemberQueue* queue;
+	TermsLIST* list;
+	NameBST* BST;
 
 	ifstream fcmd;
 	ofstream flog;
-
 
 public:
 	Manager();

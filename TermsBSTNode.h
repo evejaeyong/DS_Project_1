@@ -84,4 +84,24 @@ public:
 	Day getEnd() {
 		return end;
 	}
+
+	int compare(Day end) {
+		if (this->end.year > end.year) return 1;
+		else if (this->end.year < end.year) return -1;
+		else if (this->end.month > end.month) return 1;
+		else if (this->end.month < end.month) return -1;
+		else if (this->end.day > end.day) return 1;
+		else if (this->end.day < end.day) return -1;
+		else return 0;
+	}
+
+	void setStart(Day start) {
+		this->start = start;
+		return;
+	}
+
+	void setEnd(Day end) {
+		this->end = end;
+		return;
+	}
 };
