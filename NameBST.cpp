@@ -8,7 +8,9 @@ NameBST::NameBST() : root(nullptr) {
 
 }
 NameBST::~NameBST() {
-
+	while (root) {
+		deleteOneData(root->getName());
+	}
 }
 
 NameBSTNode* NameBST::getRoot() {

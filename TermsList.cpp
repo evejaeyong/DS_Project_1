@@ -3,6 +3,12 @@
 TermsLIST::TermsLIST() : head(nullptr) {
 }
 TermsLIST::~TermsLIST() {
+	TermsListNode* a = head;
+	while (a) {
+		TermsListNode* b = a;
+		a = a->getNext();
+		delete b;
+	}
 }
 
 TermsListNode* TermsLIST::getHead() {

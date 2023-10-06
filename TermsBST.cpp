@@ -7,7 +7,9 @@ TermsBST::TermsBST() : root(nullptr) {
 
 }
 TermsBST::~TermsBST() {
-
+	while (root) {
+		deleteOneData(root->getEnd(), root->getName());
+	}
 }
 
 void TermsBST::setRoot(TermsBSTNode* root) {
