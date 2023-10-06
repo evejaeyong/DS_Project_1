@@ -1,10 +1,12 @@
 #pragma once
+#include <iostream>
+#include <fstream>
+#include <string>
 #include "MemberQueue.h"
 #include "TermsList.h"
 #include "TermsBST.h"
 #include "NameBST.h"
-#include <fstream>
-#include <string>
+
 using namespace std;
 
 class Manager {
@@ -21,7 +23,7 @@ public:
 	~Manager();
 
 	void run(const char* command);
-	
+
 	void PrintSuccess(const char* cmd);
 	void PrintErrorCode(int num);
 

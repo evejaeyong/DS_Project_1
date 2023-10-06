@@ -14,20 +14,20 @@ private:
 	int age;
 	Day start;
 	Day end;
-	
-	TermsBSTNode*	left;
-	TermsBSTNode*	right;
+
+	TermsBSTNode* left;
+	TermsBSTNode* right;
 
 
 public:
 	TermsBSTNode() {}
 	~TermsBSTNode() {}
 
-	TermsBSTNode*	getLeft()			{ return left; }
-	TermsBSTNode*	getRight()			{ return right; }
+	TermsBSTNode* getLeft() { return left; }
+	TermsBSTNode* getRight() { return right; }
 
-	void setLeft (TermsBSTNode* left)	{ this->left = left; }
-	void setRight(TermsBSTNode* right)	{ this->right = right; }
+	void setLeft(TermsBSTNode* left) { this->left = left; }
+	void setRight(TermsBSTNode* right) { this->right = right; }
 
 	void setName(string name) {
 		this->name = name;
@@ -46,27 +46,27 @@ public:
 		start.month = (date[5] - '0') * 10 + (date[6] - '0');
 		start.day = (date[8] - '0') * 10 + (date[9] - '0');
 
-		if(type - 'A' == 0) {
+		if (type - 'A' == 0) {
 			end.year = start.year;
 			end.month = start.month + 6;
 			end.day = start.day;
 
-			if(end.month > 12) {
+			if (end.month > 12) {
 				end.year++;
 				end.month -= 12;
 			}
 		}
-		else if(type - 'A' == 1) {
+		else if (type - 'A' == 1) {
 			end.year = start.year + 1;
 			end.month = start.month;
 			end.day = start.day;
 		}
-		else if(type - 'A' == 2) {
+		else if (type - 'A' == 2) {
 			end.year = start.year + 2;
 			end.month = start.month;
 			end.day = start.day;
 		}
-		else if(type - 'A' == 3) {
+		else if (type - 'A' == 3) {
 			end.year = start.year + 3;
 			end.month = start.month;
 			end.day = start.day;

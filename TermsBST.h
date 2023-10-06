@@ -1,9 +1,9 @@
 #pragma once
-#include <string>
 #include <fstream>
 #include "TermsBSTNode.h"
-#include "TermsList.h"
 using namespace std;
+
+class TermsListNode;
 
 class TermsBST {
 private:

@@ -42,7 +42,7 @@ void Manager::run(const char* command) {
         else {
             PrintErrorCode(1000);
         }
-        
+
     }
 
     fcmd.close();
@@ -66,8 +66,8 @@ void Manager::PrintErrorCode(int num) {
 void Manager::LoadData() {
     ifstream fdata;
     fdata.open("data.txt");
-    
-    if(!fdata) {
+
+    if (!fdata) {
         PrintErrorCode(100);
     }
     else if (!queue->empty() || list->getHead() != NULL || BST->getRoot() != NULL) {
@@ -82,19 +82,19 @@ void Manager::LoadData() {
             int age;
             char type;
 
-            while (line[len] != '/') {
+            while (line[len] != ' ') {
                 name.push_back(line[len++]);
             }
             len++;
 
-            while (line[len] != '/') {
+            while (line[len] != ' ') {
                 strage.push_back(line[len++]);
-               
+
             }
             age = stoi(strage);
             len++;
 
-            while (line[len] != '/') {
+            while (line[len] != ' ') {
                 date.push_back(line[len++]);
             }
             len++;
@@ -115,16 +115,16 @@ void Manager::AddData() {
     string line;
     getline(fcmd, line);
 
-    int len = 0;
+    int len = 1;
     string name, strage, date;
     int age;
     char type;
 
     while (line[len] != ' ') {
-       name.push_back(line[len++]);
-       if (line[len] == NULL) {
-           PrintErrorCode(200);
-           return;
+        name.push_back(line[len++]);
+        if (line[len] == NULL) {
+            PrintErrorCode(200);
+            return;
         }
     }
     len++;
@@ -153,7 +153,7 @@ void Manager::AddData() {
         PrintErrorCode(200);
         return;
     }
-    
+
     queue->push(name, age, date, type);
 
     flog << "===== ADD =====\n";
@@ -165,9 +165,11 @@ void Manager::AddData() {
 void Manager::PopData() {
     if (queue->empty()) PrintErrorCode(300);
     else {
-        MemberQueueNode popNode = queue->pop();
-        list->insertData(popNode);
-        BST->insertData(popNode);
+        while (!queue->empty()) {
+            MemberQueueNode popNode = queue->pop();
+            list->insertData(popNode);
+            BST->insertData(popNode);
+        }
         PrintSuccess("QPOP");
     }
 }
@@ -184,17 +186,17 @@ void Manager::SearchData() {
     else {
         flog << "===== SEARCH =====\n";
         flog << node->getName() << "/" << node->getAge() << "/" << node->getStart().year << "-" << node->getStart().month << "-" << node->getStart().day
-             << "/" << node->getEnd().year << "-" << node->getEnd().month << "-" << node->getEnd().day << "\n";
+            << "/" << node->getEnd().year << "-" << node->getEnd().month << "-" << node->getEnd().day << "\n";
         flog << "===============\n\n";
     }
-    
+
 }
 
 // PRINT
 void Manager::PrintData() {
     string name;
     fcmd >> name;
-    
+
     if ('A' <= name[0] && name[0] <= 'D') {
         if (list->searchData(name[0])->getBST()->getRoot() == NULL) {
             PrintErrorCode(500);
@@ -202,6 +204,7 @@ void Manager::PrintData() {
         }
         flog << "===== PRINT =====\n";
         flog << "Terms_BST " << name[0] << "\n";
+        flog.close();
         list->searchData(name[0])->getBST()->printData(list->searchData(name[0])->getBST()->getRoot());
     }
     else {
@@ -211,8 +214,10 @@ void Manager::PrintData() {
         }
         flog << "===== PRINT =====\n";
         flog << "Name_BST\n";
+        flog.close();
         BST->printData(BST->getRoot());
     }
+    flog.open("log.txt", ios::app);
     flog << "===============\n\n";
     return;
 }
@@ -224,17 +229,17 @@ void Manager::DeleteData() {
 
     if (st == "DATE") {
         Day end;
-	    end.year = (data[0] - '0') * 1000 + (data[1] - '0') * 100 + (data[2] - '0') * 10 + (data[3] - '0');
-	    end.month = (data[5] - '0') * 10 + (data[6] - '0');
-	    end.day = (data[8] - '0') * 10 + (data[9] - '0');
-        if(list->DeleteData(end) == true) {
+        end.year = (data[0] - '0') * 1000 + (data[1] - '0') * 100 + (data[2] - '0') * 10 + (data[3] - '0');
+        end.month = (data[5] - '0') * 10 + (data[6] - '0');
+        end.day = (data[8] - '0') * 10 + (data[9] - '0');
+        if (list->DeleteData(end) == true) {
             PrintSuccess("DELETE");
         }
         else PrintErrorCode(600);
     }
 
     else if (st == "NAME") {
-        if(BST->deleteData(data) == true) {
+        if (BST->deleteData(data) == true) {
             PrintSuccess("DELETE");
         }
         else PrintErrorCode(600);
