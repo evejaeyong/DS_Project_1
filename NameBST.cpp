@@ -1,5 +1,7 @@
 #include "NameBST.h"
+#include "TermsList.h"
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 NameBST::NameBST() : root(nullptr) {
@@ -25,12 +27,12 @@ void NameBST::insertData(MemberQueueNode add) {
 	newNode->setType(add.getType());
 	newNode->setDay(add.getDate());
 
-	if (root = NULL) {
+	if (root == NULL) {
 		root = newNode;
 		return;
 	}
 	NameBSTNode* a = root;
-	while(1) {
+	while (1) {
 		if (a->getName().compare(newNode->getName()) < 0) {
 			if (a->getRight() == NULL) {
 				a->setRight(newNode);
@@ -39,7 +41,7 @@ void NameBST::insertData(MemberQueueNode add) {
 			else a = a->getRight();
 		}
 		else {
-			if(a->getLeft() == NULL) {
+			if (a->getLeft() == NULL) {
 				a->setLeft(newNode);
 				break;
 			}
@@ -51,12 +53,12 @@ void NameBST::insertData(MemberQueueNode add) {
 NameBSTNode* NameBST::searchData(string name) {
 	NameBSTNode* a = root;
 
-	while(1) {
+	while (1) {
 		if (a == NULL) break;
 		if (name.compare(a->getName()) == 0) {
 			return a;
 		}
-		else if (name.compare(a->getName()) > 0) {
+		else if (name.compare(a->getName()) < 0) {
 			a = a->getLeft();
 		}
 		else a = a->getRight();
@@ -68,15 +70,23 @@ NameBSTNode* NameBST::searchData(string name) {
 // print
 
 void NameBST::printData(NameBSTNode* node) {
+	ofstream flog;
 	if (node == NULL) return;
-	flog.open("log.txt", ios::app);
-
+	
 	printData(node->getLeft());
-	flog << node->getName() << "/" << node->getAge() << "/" << node->getStart().year << "-" << node->getStart().month << "-" << node->getStart().day << "/"
-			<< node->getEnd().year << "-" << node->getEnd().month << "-" << node->getEnd().day << "\n";	//cout으로 하면 안됨, 파일로 옮길 방법 찾기
-	printData(node->getRight());
-
+	flog.open("log.txt", ios::app);
+	flog << node->getName() << "/" << node->getAge() << "/" << node->getStart().year << "-";
+	if (node->getStart().month < 10) flog << 0;
+	flog << node->getStart().month << "-";
+	if (node->getStart().day < 10) flog << 0;
+	flog << node->getStart().day << "/" << node->getEnd().year << "-";
+	if (node->getEnd().month < 10) flog << 0;
+	flog << node->getEnd().month << "-";
+	if (node->getEnd().day < 10) flog << 0;
+	flog << node->getEnd().day << "\n";
 	flog.close();
+	printData(node->getRight());
+	
 	return;
 }
 
@@ -87,11 +97,11 @@ bool NameBST::deleteData(string name) {
 
 	if (root->getName() == name) {
 		int childnum = 0;
-		if(root->getLeft() != NULL) childnum++;
-		if(root->getRight() != NULL) childnum++;
+		if (root->getLeft() != NULL) childnum++;
+		if (root->getRight() != NULL) childnum++;
 
-		if(childnum == 0) {
-			this->list->DeleteOneData(now->getEnd() ,now->getName());
+		if (childnum == 0) {
+			this->list->DeleteOneData(now->getEnd(), now->getName());
 			delete now;
 			root = NULL;
 		}
@@ -102,15 +112,17 @@ bool NameBST::deleteData(string name) {
 			else {
 				root = now->getRight();
 			}
-			this->list->DeleteOneData(now->getEnd() ,now->getName());
+			this->list->DeleteOneData(now->getEnd(), now->getName());
 			delete now;
 		}
 		else {
 			NameBSTNode* prev = root->getRight();
 			now = prev;
+			bool flag = false;
 			while (now->getLeft() != NULL) {
 				now = now->getLeft();
 				prev = prev->getLeft();
+				flag = true;
 			}
 
 			root->setName(now->getName());
@@ -119,19 +131,21 @@ bool NameBST::deleteData(string name) {
 			root->setStart(now->getStart());
 			root->setEnd(now->getEnd());
 
-			if (now->getRight() != NULL) {
-				prev->setLeft(now->getRight());
-			}
-			this->list->DeleteOneData(now->getEnd() ,now->getName());
+			
+			if (flag) prev->setLeft(now->getRight());
+			else prev->setRight(now->getRight());
+			
+			this->list->DeleteOneData(now->getEnd(), now->getName());
 			delete now;
 		}
 	}
 	else {
 		NameBSTNode* prev = now;
 		bool way = false;
-		while (now->getName() != name) {
+		while (1) {
 			if (now == NULL) return 0;
-			if(now->getName().compare(name) > 0) {
+			if (now->getName() == name) break;
+			if (now->getName().compare(name) < 0) {
 				prev = now;
 				now = now->getRight();
 				way = true;
@@ -147,7 +161,9 @@ bool NameBST::deleteData(string name) {
 		if (now->getRight() != NULL) childnum++;
 
 		if (childnum == 0) {
-			this->list->DeleteOneData(now->getEnd() ,now->getName());
+			this->list->DeleteOneData(now->getEnd(), now->getName());
+			if (!way) prev->setLeft(NULL);
+			else prev->setRight(NULL);
 			delete now;
 		}
 		else if (childnum == 1) {
@@ -159,17 +175,19 @@ bool NameBST::deleteData(string name) {
 				if (way) prev->setRight(now->getRight());
 				else prev->setLeft(now->getRight());
 			}
-			this->list->DeleteOneData(now->getEnd() ,now->getName());
+			this->list->DeleteOneData(now->getEnd(), now->getName());
 			delete now;
 		}
 		else {
 			NameBSTNode* del = now;
-			this->list->DeleteOneData(now->getEnd() ,now->getName());
-			
+			this->list->DeleteOneData(now->getEnd(), now->getName());
+			bool flag = false;
+			prev = now;
 			now = now->getRight();
 			while (now->getLeft() != NULL) {
 				prev = now;
 				now = now->getLeft();
+				flag = true;
 			}
 
 			del->setName(now->getName());
@@ -178,13 +196,121 @@ bool NameBST::deleteData(string name) {
 			del->setStart(now->getStart());
 			del->setEnd(now->getEnd());
 
-			if (now->getRight() != NULL) {
-				prev->setLeft(now->getRight());
-			}
+			if (flag) prev->setLeft(now->getRight());
+			else prev->setRight(now->getRight());
 			
 			delete now;
 		}
 
 	}
 	return 1;
+}
+
+void NameBST::deleteOneData(string name) {
+	if (root == NULL) return;
+	NameBSTNode* now = root;
+
+	if (root->getName() == name) {
+		int childnum = 0;
+		if (root->getLeft() != NULL) childnum++;
+		if (root->getRight() != NULL) childnum++;
+
+		if (childnum == 0) {
+			delete now;
+			root = NULL;
+		}
+		else if (childnum == 1) {
+			if (root->getLeft() != NULL) {
+				root = now->getLeft();
+			}
+			else {
+				root = now->getRight();
+			}
+			delete now;
+		}
+		else {
+			NameBSTNode* prev = root->getRight();
+			now = prev;
+			bool flag = false;
+			while (now->getLeft() != NULL) {
+				prev = now;
+				now = now->getLeft();
+				flag = true;
+			}
+
+			root->setName(now->getName());
+			root->setAge(now->getAge());
+			root->setType(now->getType());
+			root->setStart(now->getStart());
+			root->setEnd(now->getEnd());
+
+
+			if (flag) prev->setLeft(now->getRight());
+			else prev->setRight(now->getRight());
+
+			delete now;
+		}
+	}
+	else {
+		NameBSTNode* prev = now;
+		bool way = false;
+		while (1) {
+			if (now == NULL) return;
+			if (now->getName() == name) break;
+			if (now->getName().compare(name) < 0) {
+				prev = now;
+				now = now->getRight();
+				way = true;
+			}
+			else {
+				prev = now;
+				now = now->getLeft();
+				way = false;
+			}
+		}
+		int childnum = 0;
+		if (now->getLeft() != NULL) childnum++;
+		if (now->getRight() != NULL) childnum++;
+
+		if (childnum == 0) {
+			if (!way) prev->setLeft(NULL);
+			else prev->setRight(NULL);
+			delete now;
+		}
+		else if (childnum == 1) {
+			if (now->getLeft() != NULL) {
+				if (way) prev->setRight(now->getLeft());
+				else prev->setLeft(now->getLeft());
+			}
+			else {
+				if (way) prev->setRight(now->getRight());
+				else prev->setLeft(now->getRight());
+			}
+			delete now;
+		}
+		else {
+			NameBSTNode* del = now;
+			bool flag = false;
+			prev = now;
+			now = now->getRight();
+			while (now->getLeft() != NULL) {
+				prev = now;
+				now = now->getLeft();
+				flag = true;
+			}
+
+			del->setName(now->getName());
+			del->setAge(now->getAge());
+			del->setType(now->getType());
+			del->setStart(now->getStart());
+			del->setEnd(now->getEnd());
+
+			if (flag) prev->setLeft(now->getRight());
+			else prev->setRight(now->getRight());
+
+			delete now;
+		}
+
+	}
+	return;
 }

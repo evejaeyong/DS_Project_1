@@ -1,12 +1,7 @@
 #pragma once
 #include <string>
+#include "TermsBSTNode.h"
 using namespace std;
-
-struct Day {
-	int year;
-	int month;
-	int day;
-};
 
 class NameBSTNode {
 private:
@@ -16,18 +11,18 @@ private:
 	Day end;
 	char type;
 
-	NameBSTNode*	left;
-	NameBSTNode*	right;
+	NameBSTNode* left;
+	NameBSTNode* right;
 
 public:
 	NameBSTNode() {}
 	~NameBSTNode() {}
 
-	NameBSTNode*	getLeft()			{ return left; }
-	NameBSTNode*	getRight()			{ return right; }
+	NameBSTNode* getLeft() { return left; }
+	NameBSTNode* getRight() { return right; }
 
-	void setLeft(NameBSTNode* left)						{ this->left = left; }
-	void setRight(NameBSTNode* right)					{ this->right = right; }
+	void setLeft(NameBSTNode* left) { this->left = left; }
+	void setRight(NameBSTNode* right) { this->right = right; }
 
 	void setName(string name) {
 		this->name = name;
@@ -54,27 +49,27 @@ public:
 		start.month = (date[5] - '0') * 10 + (date[6] - '0');
 		start.day = (date[8] - '0') * 10 + (date[9] - '0');
 
-		if(type - 'A' == 0) {
+		if (type - 'A' == 0) {
 			end.year = start.year;
 			end.month = start.month + 6;
 			end.day = start.day;
 
-			if(end.month > 12) {
+			if (end.month > 12) {
 				end.year++;
 				end.month -= 12;
 			}
 		}
-		else if(type - 'A' == 1) {
+		else if (type - 'A' == 1) {
 			end.year = start.year + 1;
 			end.month = start.month;
 			end.day = start.day;
 		}
-		else if(type - 'A' == 2) {
+		else if (type - 'A' == 2) {
 			end.year = start.year + 2;
 			end.month = start.month;
 			end.day = start.day;
 		}
-		else if(type - 'A' == 3) {
+		else if (type - 'A' == 3) {
 			end.year = start.year + 3;
 			end.month = start.month;
 			end.day = start.day;

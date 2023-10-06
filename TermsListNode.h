@@ -1,11 +1,14 @@
 #pragma once
 #include "MemberQueue.h"
+#include "TermsBST.h"
+#include "NameBST.h"
 
 class TermsListNode {
 private:
 	char type;
 	int member_num;
 	TermsBST* BST;
+	NameBST* NBST;
 	TermsListNode* next;
 
 public:
@@ -17,7 +20,7 @@ public:
 		delete BST;
 	}
 
-	TermsListNode* getNext() { 
+	TermsListNode* getNext() {
 		return next;
 	}
 
@@ -29,7 +32,7 @@ public:
 		BST->push(name, age, date);
 	}
 
-	void setNext(TermsListNode* next) { 
+	void setNext(TermsListNode* next) {
 		this->next = next;
 	}
 
@@ -49,9 +52,16 @@ public:
 		member_num--;
 	}
 
-	bool isEmpty(){
-		if(member_num == 0) return 1;
+	bool isEmpty() {
+		if (member_num == 0) return 1;
 		else return 0;
 	}
-	
+
+	void setNBST(NameBST* NBST) {
+		this->NBST = NBST;
+	}
+
+	NameBST* getNBST() {
+		return NBST;
+	}
 };

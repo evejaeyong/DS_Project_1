@@ -1,13 +1,13 @@
 #pragma once
-#include "NameBSTNode.h"
-#include "TermsList.h"
-#include "MemberQueueNode.h"
 #include <fstream>
+#include "NameBSTNode.h"
+#include "MemberQueueNode.h"
+class TermsLIST;
+
 
 class NameBST {
 private:
 	TermsLIST* list;
-	ofstream flog;
 	NameBSTNode* root;
 
 public:
@@ -25,4 +25,5 @@ public:
 	void printData(NameBSTNode* node);
 	// delete
 	bool deleteData(string name);
+	void deleteOneData(string name);
 };

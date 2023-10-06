@@ -1,9 +1,9 @@
 #pragma once
-#include <string>
 #include <fstream>
 #include "TermsBSTNode.h"
-#include "TermsList.h"
 using namespace std;
+
+class TermsListNode;
 
 class TermsBST {
 private:
@@ -25,6 +25,6 @@ public:
 	// print
 	void printData(TermsBSTNode* node);
 	// delete
-	bool deleteData(Day end);
+	bool deleteData(Day end, TermsBSTNode* node);
 	void deleteOneData(Day end, string name);
 };

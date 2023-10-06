@@ -1,10 +1,10 @@
 #pragma once
-#include <string>
+#include "Manager.h"
 #include "TermsListNode.h"
-#include "NameBST.h"
-#include "MemberQueue.h"
-#include "TermsBST.h"
+#include "MemberQueueNode.h"
 using namespace std;
+
+class NameBST;
 
 class TermsLIST {
 private:
@@ -19,7 +19,7 @@ public:
 
 	TermsListNode* getHead();
 	void setBST(NameBST* BST);
-	
+
 	// insert
 	void insertData(MemberQueueNode push);
 	// search

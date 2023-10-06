@@ -1,6 +1,6 @@
 #include "TermsList.h"
 
-TermsLIST::TermsLIST(): head(nullptr) {
+TermsLIST::TermsLIST() : head(nullptr) {
 }
 TermsLIST::~TermsLIST() {
 }
@@ -20,6 +20,8 @@ void TermsLIST::insertData(MemberQueueNode add) {
 		TermsListNode* newNode = new TermsListNode;
 		newNode->setType(temp);
 		newNode->plus_num();
+		newNode->setNBST(this->BST);
+		newNode->getBST()->setList(newNode);
 		newNode->getBST()->push(add.getName(), add.getAge(), add.getDate());
 		head = newNode;
 		tail = newNode;
@@ -34,12 +36,15 @@ void TermsLIST::insertData(MemberQueueNode add) {
 				a->getBST()->push(add.getName(), add.getAge(), add.getDate());
 				flag = true;
 			}
+			a = a->getNext();
 		}
 
 		if (!flag) {
 			TermsListNode* newNode = new TermsListNode;
 			newNode->setType(temp);
 			newNode->plus_num();
+			newNode->getBST()->setList(newNode);
+			newNode->setNBST(this->BST);
 			newNode->getBST()->push(add.getName(), add.getAge(), add.getDate());
 			tail->setNext(newNode);
 			tail = newNode;
@@ -67,9 +72,9 @@ TermsListNode* TermsLIST::searchData(char type) {
 bool TermsLIST::DeleteData(Day end) {
 	TermsListNode* list = head;
 	bool check, res = false;
-	while(list != NULL) {
+	while (list != NULL) {
 		TermsBST* BST = list->getBST();
-		check = BST->deleteData(end);
+		check = BST->deleteData(end, list->getBST()->getRoot());
 		if (check) res = true;
 		list = list->getNext();
 	}
@@ -78,7 +83,7 @@ bool TermsLIST::DeleteData(Day end) {
 
 void TermsLIST::DeleteOneData(Day end, string name) {
 	TermsListNode* list = head;
-	while(list != NULL) {
+	while (list != NULL) {
 		TermsBST* BST = list->getBST();
 		BST->deleteOneData(end, name);
 		list = list->getNext();
