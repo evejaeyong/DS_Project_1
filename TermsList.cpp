@@ -3,6 +3,12 @@
 TermsLIST::TermsLIST() : head(nullptr) {
 }
 TermsLIST::~TermsLIST() {
+	TermsListNode* a = head;
+	while (a) {
+		TermsListNode* b = a;
+		a = a->getNext();
+		delete b;
+	}
 }
 
 TermsListNode* TermsLIST::getHead() {
@@ -75,8 +81,21 @@ bool TermsLIST::DeleteData(Day end) {
 	while (list != NULL) {
 		TermsBST* BST = list->getBST();
 		check = BST->deleteData(end, list->getBST()->getRoot());
-		if (check) res = true;
+		if (check) {
+			res = true;
+			if (list->isEmpty()) {
+				TermsListNode* prev = head;
+				TermsListNode* del = list;
+				while (prev->getNext() != list) {
+					prev = prev->getNext();
+				}
+				prev->setNext(list->getNext());
+				delete del;
+				list = prev;
+			}
+		}
 		list = list->getNext();
+		
 	}
 	return res;
 }
@@ -86,6 +105,16 @@ void TermsLIST::DeleteOneData(Day end, string name) {
 	while (list != NULL) {
 		TermsBST* BST = list->getBST();
 		BST->deleteOneData(end, name);
+		if (list->isEmpty()) {
+			TermsListNode* prev = head;
+			TermsListNode* del = list;
+			while (prev->getNext() != list) {
+				prev = prev->getNext();
+			}
+			prev->setNext(list->getNext());
+			delete del;
+			list = prev;
+		}
 		list = list->getNext();
 	}
 	return;

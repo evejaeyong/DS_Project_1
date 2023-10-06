@@ -106,8 +106,10 @@ void Manager::LoadData() {
 
         }
         flog << "===============\n\n";
+        
     }
     fdata.close();
+    
 }
 
 // ADD
@@ -198,6 +200,10 @@ void Manager::PrintData() {
     fcmd >> name;
 
     if ('A' <= name[0] && name[0] <= 'D') {
+        if (list->searchData(name[0]) == NULL) {
+            PrintErrorCode(500);
+            return;
+        }
         if (list->searchData(name[0])->getBST()->getRoot() == NULL) {
             PrintErrorCode(500);
             return;
