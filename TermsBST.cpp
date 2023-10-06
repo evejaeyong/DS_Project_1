@@ -133,8 +133,8 @@ void TermsBST::deleteOneData(Day end, string name) {
 			delete now;
 		}
 		else {
-			TermsBSTNode* prev = root->getRight();
-			now = prev;
+			TermsBSTNode* prev = root;
+			now = prev->getRight();
 			bool flag = false;
 			while (now->getLeft() != NULL) {
 				prev = now;

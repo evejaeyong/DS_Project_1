@@ -118,8 +118,8 @@ bool NameBST::deleteData(string name) {
 			delete now;
 		}
 		else {
-			NameBSTNode* prev = root->getRight();
-			now = prev;
+			NameBSTNode* prev = root;
+			now = prev->getRight();
 			bool flag = false;
 			while (now->getLeft() != NULL) {
 				now = now->getLeft();
@@ -231,8 +231,8 @@ void NameBST::deleteOneData(string name) {
 			delete now;
 		}
 		else {
-			NameBSTNode* prev = root->getRight();
-			now = prev;
+			NameBSTNode* prev = root;
+			now = prev->getRight();
 			bool flag = false;
 			while (now->getLeft() != NULL) {
 				prev = now;
