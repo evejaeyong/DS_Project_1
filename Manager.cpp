@@ -4,16 +4,16 @@ using namespace std;
 Manager::Manager() {
     queue = new MemberQueue;
     list = new TermsLIST;
-    BST = new NameBST;
+    BST = new NameBST;          //Member variable Dynamic allocation
 
     BST->setList(list);
-    list->setBST(BST);
+    list->setBST(BST);          //Connect list and BST each other
 }
 
 Manager::~Manager() {
     delete queue;
     delete list;
-    delete BST;
+    delete BST;                 //Dynamic allocation release
 }
 
 void Manager::run(const char* command) {
@@ -22,13 +22,13 @@ void Manager::run(const char* command) {
     flog.open("log.txt");
     if (!fcmd) {
         flog << "Fail to open command file" << endl;
-        exit(-1);
+        exit(-1);               //Program Exit
     }
 
     // Run command
-    string cmd;
+    string cmd;                
     while (1) {
-        fcmd >> cmd;
+        fcmd >> cmd;                   //Receive commands
         if (cmd == "LOAD") LoadData();
         else if (cmd == "ADD") AddData();
         else if (cmd == "QPOP") PopData();
@@ -36,73 +36,74 @@ void Manager::run(const char* command) {
         else if (cmd == "PRINT") PrintData();
         else if (cmd == "DELETE") DeleteData();
         else if (cmd == "EXIT") {
-            PrintSuccess(cmd.c_str());
-            break;
+            PrintSuccess("EXIT");
+            break;                      //Stop Receive commands
         }
         else {
-            PrintErrorCode(1000);
+            PrintErrorCode(1000);       //if invalid command, Print Error Code 1000
         }
 
     }
 
     fcmd.close();
-    flog.close();
+    flog.close();                       //close file
     return;
 }
 
 void Manager::PrintSuccess(const char* cmd) {
     flog << "===== " << cmd << " =====\n";
     flog << "Success\n";
-    flog << "===============\n\n";
+    flog << "===============\n\n";              //Print Success Messege at log.txt
 }
 
 void Manager::PrintErrorCode(int num) {
     flog << "===== ERROR =====\n";
     flog << num << endl;
-    flog << "===============\n\n";
+    flog << "===============\n\n";              //Print Error Code at log file
 }
 
 // LOAD
 void Manager::LoadData() {
     ifstream fdata;
-    fdata.open("data.txt");
+    fdata.open("data.txt");                     //Open data file
 
-    if (!fdata) {
-        PrintErrorCode(100);
+    if (!fdata) {                               //if data file don't exist
+        PrintErrorCode(100);                    //Print Error Code 100
     }
-    else if (!queue->empty() || list->getHead() != NULL || BST->getRoot() != NULL) {
-        PrintErrorCode(100);
+    else if (!queue->empty() || list->getHead() != NULL 
+            || BST->getRoot() != NULL) {        //if data already exists
+        PrintErrorCode(100);                    //Print Error Code 100
     }
-    else {
+    else {                                      //normal case
         string line;
         flog << "===== LOAD =====\n";
-        while (getline(fdata, line)) {
+        while (getline(fdata, line)) {          //Get one line at data file
             int len = 0;
             string name, strage, date;
             int age;
             char type;
 
-            while (line[len] != ' ') {
+            while (line[len] != ' ') {          //Parsing name
                 name.push_back(line[len++]);
             }
             len++;
 
-            while (line[len] != ' ') {
+            while (line[len] != ' ') {          //Parsing age
                 strage.push_back(line[len++]);
 
             }
-            age = stoi(strage);
+            age = stoi(strage);                 //string to int
             len++;
 
-            while (line[len] != ' ') {
+            while (line[len] != ' ') {          //Parsing date
                 date.push_back(line[len++]);
             }
             len++;
 
-            type = line[len];
-            queue->push(name, age, date, type);
+            type = line[len];                   //Get type
+            queue->push(name, age, date, type); //push at MemberQueue
 
-            flog << line << "\n";
+            flog << line << "\n";               //Print One line at log file
 
         }
         flog << "===============\n\n";
@@ -115,103 +116,100 @@ void Manager::LoadData() {
 // ADD
 void Manager::AddData() {
     string line;
-    getline(fcmd, line);
+    getline(fcmd, line);                //Get One line
 
-    int len = 1;
+    int len = 1;                        //Start from 1 to ignore blank characters
     string name, strage, date;
     int age;
     char type;
 
-    while (line[len] != ' ') {
+    while (line[len] != ' ') {          //Parsing name
         name.push_back(line[len++]);
-        if (line[len] == NULL) {
-            PrintErrorCode(200);
+        if (line[len] == NULL) {        //if have less data
+            PrintErrorCode(200);        //Print Error Code 200
             return;
         }
     }
     len++;
 
-    while (line[len] != ' ') {
+    while (line[len] != ' ') {          //Parsing age
         strage.push_back(line[len++]);
-        if (line[len] == NULL) {
-            PrintErrorCode(200);
+        if (line[len] == NULL) {        //if have less data
+            PrintErrorCode(200);        //Print Error Code 200
             return;
         }
     }
     age = stoi(strage);
     len++;
 
-    while (line[len] != ' ') {
+    while (line[len] != ' ') {          //Parsing date
         date.push_back(line[len++]);
-        if (line[len] == NULL) {
-            PrintErrorCode(200);
+        if (line[len] == NULL) {        //if have less data
+            PrintErrorCode(200);        //Print Error Code 200
             return;
         }
     }
     len++;
 
-    type = line[len];
-    if (type == NULL) {
-        PrintErrorCode(200);
+    type = line[len++];                 //Get type
+    if (type == NULL) {                 //if have less data
+        PrintErrorCode(200);            //Print Error Code 200
         return;
     }
 
-    queue->push(name, age, date, type);
+    queue->push(name, age, date, type); //push at MemberQueue
 
     flog << "===== ADD =====\n";
     flog << name << "/" << age << "/" << date << "/" << type << "\n";
-    flog << "===============\n\n";
+    flog << "===============\n\n";      //Print Success Messege at log file
 }
 
 // QPOP
 void Manager::PopData() {
-    if (queue->empty()) PrintErrorCode(300);
+    if (queue->empty()) PrintErrorCode(300);        //if MemberQueue is Empty Print Error Code 300
     else {
         while (!queue->empty()) {
-            MemberQueueNode popNode = queue->pop();
-            list->insertData(popNode);
-            BST->insertData(popNode);
+            MemberQueueNode popNode = queue->pop(); //Get Data at MemberQueue
+            list->insertData(popNode);              //Push at Termslist
+            BST->insertData(popNode);               //Push at NameBST
         }
-        PrintSuccess("QPOP");
+        PrintSuccess("QPOP");                       //Print Success Messege
     }
 }
 
 // SEARCH
 void Manager::SearchData() {
     string name;
-    fcmd >> name;
+    fcmd >> name;                               //Get name at command file
 
     NameBSTNode* node = BST->searchData(name);
-    if (node == NULL) {
-        PrintErrorCode(400);
+    if (node == NULL) {                         //if BST can't find same name
+        PrintErrorCode(400);                    //Print Error Code 400
     }
     else {
         flog << "===== SEARCH =====\n";
         flog << node->getName() << "/" << node->getAge() << "/" << node->getStart().year << "-" << node->getStart().month << "-" << node->getStart().day
             << "/" << node->getEnd().year << "-" << node->getEnd().month << "-" << node->getEnd().day << "\n";
-        flog << "===============\n\n";
+        flog << "===============\n\n";          //if Success, Print Success Messege And data
     }
 
 }
 
 // PRINT
 void Manager::PrintData() {
-    string name;
-    fcmd >> name;
+    string type;
+    fcmd >> type;               //Get Print type
 
-    if ('A' <= name[0] && name[0] <= 'D') {
-        if (list->searchData(name[0]) == NULL) {
-            PrintErrorCode(500);
+    if ('A' <= type[0] && type[0] <= 'D') {         //if Print at TermsBST
+        if (list->searchData(type[0]) == NULL) {    //if BST doesn't exist
+            PrintErrorCode(500);                    //Print Error Code 500
             return;
         }
-        if (list->searchData(name[0])->getBST()->getRoot() == NULL) {
-            PrintErrorCode(500);
-            return;
-        }
+
         flog << "===== PRINT =====\n";
-        flog << "Terms_BST " << name[0] << "\n";
+        flog << "Terms_BST " << type[0] << "\n";
         flog.close();
-        list->searchData(name[0])->getBST()->printData(list->searchData(name[0])->getBST()->getRoot());
+        list->searchData(type[0])->getBST()->printData(list->searchData(type[0])->getBST()->getRoot());
     }
     else {
         if (BST->getRoot() == NULL) {

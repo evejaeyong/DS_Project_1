@@ -15,6 +15,7 @@ public:
 	TermsListNode() {
 		TermsBST* newNode = new TermsBST;
 		BST = newNode;
+		member_num = 0;
 	}
 	~TermsListNode() {
 		delete BST;

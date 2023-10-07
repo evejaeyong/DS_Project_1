@@ -94,11 +94,10 @@ void TermsBST::printData(TermsBSTNode* node) {
 bool TermsBST::deleteData(Day end, TermsBSTNode* node) {
 	if (node == NULL) return false;
 	if (node->compare(end) == -1) {
-		if (node == root) root = node->getRight();
 		deleteData(end, node->getLeft());
 		deleteData(end, node->getRight());
 		list->getNBST()->deleteOneData(node->getName());
-		deleteOneData(end, node->getName());
+		deleteOneData(node->getEnd(), node->getName());
 		
 		return true;
 	}
@@ -163,15 +162,15 @@ void TermsBST::deleteOneData(Day end, string name) {
 			}
 			if (now->getName() == name) break;
 			
-			if (now->compare(end) == -1) {
-				prev = now;
-				now = now->getRight();
-				way = true;
-			}
-			else {
+			if (now->compare(end) == 1) {
 				prev = now;
 				now = now->getLeft();
 				way = false;
+			}
+			else {
+				prev = now;
+				now = now->getRight();
+				way = true;
 			}
 		}
 		int childnum = 0;
