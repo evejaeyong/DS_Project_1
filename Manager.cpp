@@ -206,22 +206,22 @@ void Manager::PrintData() {
             return;
         }
 
-        flog << "===== PRINT =====\n";
+        flog << "===== PRINT =====\n";              //Print Success Messege
         flog << "Terms_BST " << type[0] << "\n";
-        flog.close();
+        flog.close();                               //Close the log file to open it in the TermsBST class
         list->searchData(type[0])->getBST()->printData(list->searchData(type[0])->getBST()->getRoot());
     }
     else {
-        if (BST->getRoot() == NULL) {
+        if (BST->getRoot() == NULL) {               //if BST data doesn't exist
             PrintErrorCode(500);
             return;
         }
-        flog << "===== PRINT =====\n";
+        flog << "===== PRINT =====\n";              //Print Success Messege
         flog << "Name_BST\n";
-        flog.close();
+        flog.close();                               //Close the log file to open it in the NameBST class
         BST->printData(BST->getRoot());
     }
-    flog.open("log.txt", ios::app);
+    flog.open("log.txt", ios::app);                 //Open the log file
     flog << "===============\n\n";
     return;
 }
@@ -229,24 +229,24 @@ void Manager::PrintData() {
 // DELETE
 void Manager::DeleteData() {
     string st, data;
-    fcmd >> st >> data;
+    fcmd >> st >> data;         //Get Data
 
     if (st == "DATE") {
         Day end;
         end.year = (data[0] - '0') * 1000 + (data[1] - '0') * 100 + (data[2] - '0') * 10 + (data[3] - '0');
         end.month = (data[5] - '0') * 10 + (data[6] - '0');
         end.day = (data[8] - '0') * 10 + (data[9] - '0');
-        if (list->DeleteData(end) == true) {
+        if (list->DeleteData(end) == true) {    //if Delete Data Success
             PrintSuccess("DELETE");
         }
-        else PrintErrorCode(600);
+        else PrintErrorCode(600);               //if don't exist Data, print error code
     }
 
     else if (st == "NAME") {
-        if (BST->deleteData(data) == true) {
+        if (BST->deleteData(data) == true) {    //if Delete Data Success
             PrintSuccess("DELETE");
         }
-        else PrintErrorCode(600);
+        else PrintErrorCode(600);               //if don't exist Data, print error code
     }
 
     return;

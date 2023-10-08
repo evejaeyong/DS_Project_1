@@ -25,6 +25,6 @@ public:
 	// search
 	TermsListNode* searchData(char type);
 	// delete
-	bool DeleteData(Day end);
-	void DeleteOneData(Day end, string name);
+	bool DeleteData(Day end);					//Delete all nodes that date earlier than received
+	void DeleteOneData(Day end, string name);	//Delete Only One Data
 };

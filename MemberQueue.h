@@ -3,7 +3,7 @@
 
 class MemberQueue {
 private:
-	MemberQueueNode data[100];
+	MemberQueueNode data[100];	//Declare the class to implement the queue as an array
 	int first;
 	int rear;
 

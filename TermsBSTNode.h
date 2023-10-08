@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-struct Day {
+struct Day {		//Structure Declaration
 	int year;
 	int month;
 	int day;
@@ -44,14 +44,14 @@ public:
 	void setDay(string date, char type) {
 		start.year = (date[0] - '0') * 1000 + (date[1] - '0') * 100 + (date[2] - '0') * 10 + (date[3] - '0');
 		start.month = (date[5] - '0') * 10 + (date[6] - '0');
-		start.day = (date[8] - '0') * 10 + (date[9] - '0');
+		start.day = (date[8] - '0') * 10 + (date[9] - '0');		//Parsing Date
 
-		if (type - 'A' == 0) {
+		if (type - 'A' == 0) {				//Check the type and set end date
 			end.year = start.year;
 			end.month = start.month + 6;
 			end.day = start.day;
 
-			if (end.month > 12) {
+			if (end.month > 12) {			//Raise the year when it's pass December
 				end.year++;
 				end.month -= 12;
 			}
@@ -85,7 +85,7 @@ public:
 		return end;
 	}
 
-	int compare(Day end) {
+	int compare(Day end) {		//Date Compare for binary search
 		if (this->end.year > end.year) return 1;
 		else if (this->end.year < end.year) return -1;
 		else if (this->end.month > end.month) return 1;

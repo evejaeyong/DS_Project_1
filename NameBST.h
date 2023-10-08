@@ -24,6 +24,6 @@ public:
 	// print
 	void printData(NameBSTNode* node);
 	// delete
-	bool deleteData(string name);
-	void deleteOneData(string name);
+	bool deleteData(string name);		//Delete this class data and TermsLIST data
+	void deleteOneData(string name);	//Delete only the data in this class
 };

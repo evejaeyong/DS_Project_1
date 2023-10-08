@@ -11,7 +11,7 @@ using namespace std;
 
 class Manager {
 private:
-	MemberQueue* queue;
+	MemberQueue* queue;		//Declare three data structures as member variables
 	TermsLIST* list;
 	NameBST* BST;
 

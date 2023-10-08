@@ -25,6 +25,6 @@ public:
 	// print
 	void printData(TermsBSTNode* node);
 	// delete
-	bool deleteData(Day end, TermsBSTNode* node);
-	void deleteOneData(Day end, string name);
+	bool deleteData(Day end, TermsBSTNode* node);	//Delete all nodes that date earlier than received
+	void deleteOneData(Day end, string name);		//Delete Only One Data
 };
