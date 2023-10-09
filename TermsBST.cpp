@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-TermsBST::TermsBST() : root(nullptr) {
+TermsBST::TermsBST() : root(NULL) {
 
 }
 TermsBST::~TermsBST() {
@@ -44,7 +44,7 @@ void TermsBST::push(string name, int age, string date) {	//Data insert
 	newNode->setDay(date, list->getType());
 	newNode->setName(name);
 
-	if (root == nullptr) {							//if data doesn't exist
+	if (root == NULL) {							//if data doesn't exist
 		root = newNode;
 		return;
 	}
@@ -102,6 +102,7 @@ bool TermsBST::deleteData(Day end, TermsBSTNode* node) {
 	}
 	else {
 		return deleteData(end, node->getLeft());
+		
 	}
 
 }
@@ -160,7 +161,7 @@ void TermsBST::deleteOneData(Day end, string name) {
 			}
 			if (now->getName() == name) break;	//find data
 			
-			if (now->compare(end) == 1) {		//Binary Search
+			if (now->compare(end) != -1) {		//Binary Search
 				prev = now;
 				now = now->getLeft();
 				way = false;

@@ -1,6 +1,6 @@
 #include "TermsList.h"
 
-TermsLIST::TermsLIST() : head(nullptr) {
+TermsLIST::TermsLIST() : head(NULL) {
 }
 
 TermsLIST::~TermsLIST() {
@@ -42,10 +42,11 @@ void TermsLIST::insertData(MemberQueueNode add) {
 				a->plus_num();
 				a->getBST()->push(add.getName(), add.getAge(), add.getDate());	//BST insert
 				flag = true;
+				break;
 			}
 			a = a->getNext();
 		}
-
+		
 		if (!flag) {									//if TermsListNode doesn't exist
 			TermsListNode* newNode = new TermsListNode;	//Memory allocation
 			newNode->setType(temp);
@@ -85,14 +86,24 @@ bool TermsLIST::DeleteData(Day end) {
 		if (check) {						//if delete success
 			res = true;
 			if (list->isEmpty()) {			//if TermsListNode member_num == 0
-				TermsListNode* prev = head;
-				TermsListNode* del = list;
-				while (prev->getNext() != list) {
-					prev = prev->getNext();
+				if (list == head) {
+					head = list->getNext();
+					delete list;
+					break;
 				}
-				prev->setNext(list->getNext());
-				delete del;					//Memory Deallocation
-				list = prev;
+				else {
+					TermsListNode* prev = head;
+					TermsListNode* del = list;
+					while (prev->getNext() != list) {
+						prev = prev->getNext();
+					}
+					prev->setNext(list->getNext());
+
+					if (list == tail) prev = tail;
+					delete del;					//Memory Deallocation
+					list = prev;
+				}
+				
 			}
 		}
 		list = list->getNext();				//Next Node Search
@@ -107,14 +118,23 @@ void TermsLIST::DeleteOneData(Day end, string name) {
 		TermsBST* BST = list->getBST();		//Get TermsBST
 		BST->deleteOneData(end, name);		//Delete data
 		if (list->isEmpty()) {				//if TermsListNode member_num == 0
-			TermsListNode* prev = head;
-			TermsListNode* del = list;
-			while (prev->getNext() != list) {
-				prev = prev->getNext();
+			if (list == head) {
+					head = list->getNext();
+					delete list;
+					break;
+				}
+			else {
+				TermsListNode* prev = head;
+				TermsListNode* del = list;
+				while (prev->getNext() != list) {
+					prev = prev->getNext();
+				}
+				prev->setNext(list->getNext());
+
+				if (list == tail) prev = tail;
+				delete del;					//Memory Deallocation
+				list = prev;
 			}
-			prev->setNext(list->getNext());
-			delete del;						//Memory deallocation
-			list = prev;
 		}
 		list = list->getNext();				//Search Next Node
 	}

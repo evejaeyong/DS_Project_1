@@ -21,7 +21,7 @@ void Manager::run(const char* command) {
     fcmd.open(command);
     flog.open("log.txt");
     if (!fcmd) {
-        flog << "Fail to open command file" << endl;
+        flog << "Fail to open command file\n";
         exit(-1);               //Program Exit
     }
 
@@ -44,7 +44,6 @@ void Manager::run(const char* command) {
         }
 
     }
-
     fcmd.close();
     flog.close();                       //close file
     return;
@@ -78,11 +77,16 @@ void Manager::LoadData() {
         string line;
         flog << "===== LOAD =====\n";
         while (getline(fdata, line)) {          //Get one line at data file
+            if (queue->full()) {
+                fdata.close();
+                fcmd.close();
+                flog.close();                       //close file
+                exit(-1);
+            }
             int len = 0;
             string name, strage, date;
             int age;
             char type;
-
             while (line[len] != ' ') {          //Parsing name
                 name.push_back(line[len++]);
             }
@@ -116,13 +120,17 @@ void Manager::LoadData() {
 // ADD
 void Manager::AddData() {
     string line;
+    if (queue->full()) {
+        fcmd.close();
+        flog.close();                       //close file
+        exit(-1);
+    }
     getline(fcmd, line);                //Get One line
 
     int len = 1;                        //Start from 1 to ignore blank characters
     string name, strage, date;
     int age;
     char type;
-
     while (line[len] != ' ') {          //Parsing name
         name.push_back(line[len++]);
         if (line[len] == NULL) {        //if have less data

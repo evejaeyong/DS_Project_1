@@ -15,7 +15,10 @@ private:
 	NameBSTNode* right;
 
 public:
-	NameBSTNode() {}
+	NameBSTNode() {
+		left = NULL;
+		right = NULL;
+	}
 	~NameBSTNode() {}
 
 	NameBSTNode* getLeft() { return left; }

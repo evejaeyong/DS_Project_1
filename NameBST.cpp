@@ -4,7 +4,7 @@
 #include <fstream>
 using namespace std;
 
-NameBST::NameBST() : root(nullptr) {
+NameBST::NameBST() : root(NULL) {
 
 }
 NameBST::~NameBST() {

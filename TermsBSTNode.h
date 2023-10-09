@@ -20,7 +20,10 @@ private:
 
 
 public:
-	TermsBSTNode() {}
+	TermsBSTNode() {
+		left = NULL;
+		right = NULL;
+	}
 	~TermsBSTNode() {}
 
 	TermsBSTNode* getLeft() { return left; }
