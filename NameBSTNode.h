@@ -15,7 +15,10 @@ private:
 	NameBSTNode* right;
 
 public:
-	NameBSTNode() {}
+	NameBSTNode() {
+		left = NULL;
+		right = NULL;
+	}
 	~NameBSTNode() {}
 
 	NameBSTNode* getLeft() { return left; }
@@ -47,14 +50,14 @@ public:
 	void setDay(string date) {
 		start.year = (date[0] - '0') * 1000 + (date[1] - '0') * 100 + (date[2] - '0') * 10 + (date[3] - '0');
 		start.month = (date[5] - '0') * 10 + (date[6] - '0');
-		start.day = (date[8] - '0') * 10 + (date[9] - '0');
+		start.day = (date[8] - '0') * 10 + (date[9] - '0');		//String to int, Parsing year, month, day
 
-		if (type - 'A' == 0) {
+		if (type - 'A' == 0) {		//Check the type and set End Date
 			end.year = start.year;
 			end.month = start.month + 6;
 			end.day = start.day;
 
-			if (end.month > 12) {
+			if (end.month > 12) {	//Raise the year when it's pass December
 				end.year++;
 				end.month -= 12;
 			}

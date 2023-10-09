@@ -6,15 +6,17 @@
 class TermsListNode {
 private:
 	char type;
-	int member_num;
-	TermsBST* BST;
-	NameBST* NBST;
+	int member_num;		//number of member
+	TermsBST* BST;		//TermsBST
+	NameBST* NBST;		//NameBST
 	TermsListNode* next;
 
 public:
 	TermsListNode() {
 		TermsBST* newNode = new TermsBST;
 		BST = newNode;
+		member_num = 0;
+		next = NULL;
 	}
 	~TermsListNode() {
 		delete BST;

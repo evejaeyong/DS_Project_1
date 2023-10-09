@@ -2,9 +2,8 @@
 using namespace std;
 
 int main() {
-	Manager manager;
-	manager.run("command.txt");
+	Manager manager;			//Manager define
+	manager.run("command.txt");	//Open command.txt to read the command
 	
-
 	return 0;
 }

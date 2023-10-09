@@ -4,7 +4,7 @@ using namespace std;
 
 class MemberQueueNode {
 private:
-	string name;
+	string name;		//Member variable
 	int age;
 	string date;
 	char type;
@@ -13,7 +13,7 @@ public:
 	MemberQueueNode() {}
 	~MemberQueueNode() {}
 
-	void DataPush(string name, int age, string date, char type) {
+	void DataPush(string name, int age, string date, char type) {	//Push Data
 		this->name = name;
 		this->age = age;
 		this->date = date;
