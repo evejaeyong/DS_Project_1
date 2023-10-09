@@ -101,8 +101,7 @@ bool TermsBST::deleteData(Day end, TermsBSTNode* node) {
 		return true;							//Check if deletion has progressed
 	}
 	else {
-		deleteData(end, node->getLeft());
-		return false;
+		return deleteData(end, node->getLeft());
 	}
 
 }
