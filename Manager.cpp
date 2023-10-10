@@ -2,6 +2,7 @@
 using namespace std;
 
 Manager::Manager() {
+    check = false;
     queue = new MemberQueue;
     list = new TermsLIST;
     BST = new NameBST;          //Member variable Dynamic allocation
@@ -174,13 +175,15 @@ void Manager::AddData() {
 
 // QPOP
 void Manager::PopData() {
-    if (queue->empty()) PrintErrorCode(300);        //if MemberQueue is Empty Print Error Code 300
+    if (check && queue->empty()) exit(1);
+    else if (queue->empty()) PrintErrorCode(300);        //if MemberQueue is Empty Print Error Code 300
     else {
         while (!queue->empty()) {
             MemberQueueNode popNode = queue->pop(); //Get Data at MemberQueue
             list->insertData(popNode);              //Push at Termslist
             BST->insertData(popNode);               //Push at NameBST
         }
+        check = true;
         PrintSuccess("QPOP");                       //Print Success Messege
     }
 }

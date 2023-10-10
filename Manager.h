@@ -17,6 +17,7 @@ private:
 
 	ifstream fcmd;
 	ofstream flog;
+	bool check;
 
 public:
 	Manager();
