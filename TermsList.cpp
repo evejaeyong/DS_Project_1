@@ -89,7 +89,8 @@ bool TermsLIST::DeleteData(Day end) {
 				if (list == head) {
 					head = list->getNext();
 					delete list;
-					break;
+					list = head;
+					continue;
 				}
 				else {
 					TermsListNode* prev = head;
@@ -121,7 +122,8 @@ void TermsLIST::DeleteOneData(Day end, string name) {
 			if (list == head) {
 					head = list->getNext();
 					delete list;
-					break;
+					list = head;
+					continue;
 				}
 			else {
 				TermsListNode* prev = head;
